@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "nsctodolist": {
+      "hosting": {
+        "firebase-todo": [
+          "nsctodolist"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "nsctodolist"
+  }
+}

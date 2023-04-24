@@ -1,0 +1,257 @@
+@import "../../variables";
+
+.d-flex {
+  display: flex;
+  align-items: center;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+}
+
+a {
+  color: white;
+  font-size: 20px;
+}
+
+.navbar {
+  height: 72px;
+  width: 100%;
+  background-color: $secondary-color;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  right: 0;
+  justify-content: space-between;
+  z-index: 5;
+  padding-inline: 2em;
+}
+
+.nav-logo {
+  background-color: $text-accent-color;
+  color: $primary-color;
+  padding: 4px;
+  border-radius: 10px;
+}
+
+.search-wrapper {
+  height: 60%;
+  display: flex;
+  input,
+  button {
+    background-color: $text-primary-color;
+    padding: 0 12px;
+  }
+  input {
+    font-size: 1.25em;
+    border-radius: 8px 0 0 8px;
+  }
+  button {
+    border-radius: 0 8px 8px 0;
+    svg {
+      fill: $secondary-color;
+    }
+  }
+  .close-button {
+    z-index: 1;
+  }
+}
+
+.search-inp-btn-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: transform 125ms linear;
+  .search-input {
+    height: 100%;
+    color: $text-secondary-color;
+  }
+}
+
+.user-wrapper {
+  height: 100%;
+  position: relative;
+  button {
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    cursor: pointer;
+    border-radius: 50%;
+  }
+}
+
+.hide-user-logo {
+  z-index: -3;
+}
+
+.help-btn {
+  margin-right: 24px;
+}
+
+.log-out {
+  position: absolute;
+  top: 72px;
+  right: 0;
+}
+
+.log-out-menu {
+  position: absolute;
+  top: 72px;
+  margin: 0;
+  padding: 0;
+  transition: right 125ms ease-in-out;
+  li,
+  a {
+    width: 130px;
+    height: 53px;
+    background: var(--primary-color);
+    list-style: none;
+  }
+  li:first-child {
+    border-radius: 20px 0px 0px 0px;
+  }
+  li:last-child {
+    border-radius: 0px 0px 20px 20px;
+  }
+}
+
+.log-out-menu a,
+.log-out a {
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  color: var(--muted-color);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 120%;
+}
+
+.log-out a {
+  width: 130px;
+  height: 53px;
+  border-radius: 20px 0px 20px 20px;
+}
+
+.question {
+  margin-right: 24px;
+}
+
+.user {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 3px solid var(--primary-color);
+}
+
+@media (min-width: 872px) {
+  .log-out-menu {
+    visibility: hidden;
+    right: 0;
+  }
+  .show-log-out {
+    visibility: visible;
+  }
+  .log-out-menu li {
+    display: none;
+  }
+  .log-out-menu li:last-child {
+    display: block;
+    border-radius: 20px 0 20px 20px;
+  }
+}
+
+@media (max-width: 872px) {
+  .help-btn {
+    display: none;
+  }
+  .log-out-menu {
+    right: -300px;
+  }
+  .log-out-for-mobile {
+    right: 0px;
+  }
+  .navbar {
+    width: 100%;
+  }
+  .sidebar {
+    width: 100%;
+    left: 0;
+    top: initial;
+    right: 0;
+    height: 80px;
+  }
+  .log-out {
+    display: none;
+  }
+  .sidebar div {
+    display: none;
+  }
+  .question {
+    display: none;
+  }
+  .info {
+    display: none;
+  }
+  .sidebar-links-list {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+  }
+  .legal-notice {
+    display: none;
+  }
+  .sidebar li {
+    width: 75px;
+    height: 80px;
+  }
+  .sidebar a {
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+  }
+  .sidebar-icon {
+    margin-right: 0;
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 650px) {
+  .navbar {
+    padding-inline: 1em;
+  }
+  .search-wrapper {
+    button {
+      background-color: transparent;
+      svg {
+        fill: $text-primary-color;
+        stroke: $text-primary-color;
+      }
+    }
+  }
+  .search-inp-btn-wrapper {
+    height: 72px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    transform: translateY(-72px);
+    visibility: hidden;
+  }
+
+  .show-input-search {
+    transform: translateY(0);
+    background-color: $secondary-color;
+    border-radius: 0;
+    visibility: visible;
+    .search-input {
+      background-color: $secondary-color;
+      color: $text-primary-color;
+      border-radius: 0;
+    }
+  }
+}

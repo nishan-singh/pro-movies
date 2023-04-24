@@ -1,0 +1,16 @@
+<main>
+  <article
+    class="each-movie-wrapper"
+    *ngFor="let movie of resultmovies"
+    id="each-movie-wrapper"
+    [ngStyle]="{
+      'background-image':
+        'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(' +
+        moviesPoster +
+        movie.backdrop_path +
+        ')'
+    }"
+  >
+    <h3 class="title">{{ movie.title }}</h3>
+  </article>
+</main>
