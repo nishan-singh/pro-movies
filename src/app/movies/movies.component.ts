@@ -1,5 +1,5 @@
 import { Component, inject, InjectionToken } from '@angular/core';
-import { FetchdataService } from '../fetchdata.service';
+import { FetchdataService } from '../services/fetchdata.service';
 
 @Component({
   selector: 'app-movies',
@@ -15,10 +15,14 @@ export class MoviesComponent {
   constructor(private _apiservice: FetchdataService) {}
 
   ngOnInit() {
-    this._apiservice.getdata().subscribe((res) => {
+    this._apiservice.getMovies().subscribe((res) => {
       this.newData = res;
       this.resultmovies = this.newData.results;
-      console.log(this.resultmovies[0].backdrop_path);
     });
+  }
+
+  // make a function named presentation for a carousel of movies poster
+  presentation(params: number) {
+    return this.moviesPoster + params;
   }
 }

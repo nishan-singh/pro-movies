@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { FetchdataService } from './fetchdata.service';
+import { FetchdataService } from '../services/fetchdata.service';
 
 describe('FetchdataService', () => {
   let service: FetchdataService;

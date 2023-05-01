@@ -1,5 +1,5 @@
 import { Component, inject, InjectionToken } from '@angular/core';
-import { FetchdataService } from './fetchdata.service';
+import { FetchdataService } from './services/fetchdata.service';
 // import { Firestore, collectionData, collection } from '@angular/fire/firestore';
 // import { Observable } from 'rxjs';
 
@@ -34,10 +34,9 @@ export class AppComponent {
   constructor(private _apiservice: FetchdataService) {}
 
   ngOnInit() {
-    this._apiservice.getdata().subscribe((res) => {
+    this._apiservice.getMovies().subscribe((res) => {
       this.newData = res;
       this.resultmovies = this.newData.results;
-      console.log(this.resultmovies[0]);
     });
   }
 }

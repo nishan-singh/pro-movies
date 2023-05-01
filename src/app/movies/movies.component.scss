@@ -1,10 +1,19 @@
 @import "../../variables.scss";
 
 main {
+  margin-block-start: 84px;
+}
+
+app-movies-slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rendered-movies {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-block-start: 84px;
 }
 
 .each-movie-wrapper {
@@ -23,7 +32,7 @@ main {
 .title {
   align-self: flex-end;
   font-weight: normal;
-  font-size: 1.35rem;
+  font-size: 1.35em;
   position: relative;
   padding-inline-start: 0.75em;
   display: -webkit-box;

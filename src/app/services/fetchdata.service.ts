@@ -9,9 +9,21 @@ export class FetchdataService {
   BASE_URL = `https://api.themoviedb.org/3`;
   constructor(private _http: HttpClient) {}
 
-  getdata() {
+  getMovies() {
     return this._http.get(
       `${this.BASE_URL}/discover/movie?${this.API_KEY}&language=en-US&sort_by=popularity.desc&include_video_language&page=1`
+    );
+  }
+
+  getTrendings() {
+    return this._http.get(
+      `${this.BASE_URL}/trending/all/day?${this.API_KEY}&language=en-US&page=1`
+    );
+  }
+
+  getSelectedMovie(id: number) {
+    return this._http.get(
+      `${this.BASE_URL}/movie/${id}?${this.API_KEY}&language=en-US`
     );
   }
 }

@@ -12,24 +12,27 @@
 
 a {
   color: white;
-  font-size: 20px;
 }
 
 .navbar {
   height: 72px;
   width: 100%;
   background-color: $secondary-color;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
   right: 0;
   justify-content: space-between;
-  z-index: 5;
+  z-index: 2;
   padding-inline: 2em;
+}
+
+.z-index-0 {
+  z-index: 0;
 }
 
 .nav-logo {
   background-color: $text-accent-color;
   color: $primary-color;
   padding: 4px;
+  margin: 0;
   border-radius: 10px;
 }
 
@@ -140,19 +143,62 @@ a {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  border: 3px solid var(--primary-color);
+  border: 3px solid $primary-color;
+}
+
+.sidebar-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: transparent;
+}
+
+.sidebar-drawer {
+  background-color: $secondary-color;
+  width: 20%;
+  .sidebar-links {
+    display: flex;
+    flex-direction: column;
+    gap: 2.55em;
+    font-weight: normal;
+    font-size: 1.25em;
+    margin-inline-start: 2em;
+    margin-block-start: 5em;
+    a {
+      vertical-align: baseline;
+    }
+    a:hover svg {
+      fill: white;
+    }
+  }
+  .sidebar-close-btn {
+    position: absolute;
+    right: 1.5em;
+    top: 2.5em;
+  }
+  svg {
+    width: 1.125em;
+    height: 1.125em;
+    fill: hsl(0, 0%, 73%);
+    margin-inline-end: 0.75em;
+    &:hover {
+      fill: white;
+    }
+  }
 }
 
 @media (min-width: 872px) {
   .log-out-menu {
     visibility: hidden;
     right: 0;
+    li {
+      display: none;
+    }
   }
   .show-log-out {
     visibility: visible;
-  }
-  .log-out-menu li {
-    display: none;
   }
   .log-out-menu li:last-child {
     display: block;
@@ -179,11 +225,25 @@ a {
     top: initial;
     right: 0;
     height: 80px;
+    div {
+      display: none;
+    }
+    li {
+      width: 75px;
+      height: 80px;
+    }
+    a {
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 120%;
+    }
   }
   .log-out {
-    display: none;
-  }
-  .sidebar div {
     display: none;
   }
   .question {
@@ -199,20 +259,6 @@ a {
   }
   .legal-notice {
     display: none;
-  }
-  .sidebar li {
-    width: 75px;
-    height: 80px;
-  }
-  .sidebar a {
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 120%;
   }
   .sidebar-icon {
     margin-right: 0;
@@ -253,5 +299,8 @@ a {
       color: $text-primary-color;
       border-radius: 0;
     }
+  }
+  .sidebar-drawer {
+    width: 50%;
   }
 }
