@@ -1,15 +1,5 @@
 @import "../../variables.scss";
 
-main {
-  margin-block-start: 84px;
-}
-
-app-movies-slider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .rendered-movies {
   display: flex;
   flex-wrap: wrap;
