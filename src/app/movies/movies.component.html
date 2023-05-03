@@ -1,16 +1,17 @@
+<app-movies-slider></app-movies-slider>
 <section class="rendered-movies">
-  <article
-    class="each-movie-wrapper"
+  <a
+    [routerLink]="['/selected-movie']"
+    [queryParams]="movie"
+    class="each-movie"
     *ngFor="let movie of resultmovies"
-    id="each-movie-wrapper"
-    [ngStyle]="{
-      'background-image':
-        'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(' +
-        moviesPoster +
-        movie.poster_path +
-        ')'
-    }"
   >
-    <h3 class="title">{{ movie.title }}</h3>
-  </article>
+    <figure class="each-movie-figure">
+      <img
+        [src]="moviesPoster + movie.poster_path"
+        [alt]="movie.title + ' Poster'"
+      />
+      <figcaption class="title">{{ movie.title }}</figcaption>
+    </figure>
+  </a>
 </section>

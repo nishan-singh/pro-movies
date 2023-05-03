@@ -6,19 +6,20 @@
   }"
     [class.figure-transition]="playTransition"
   >
-    <a routerLink="selectedMovies">
+    <a [routerLink]="['/selected-movie']" [queryParams]="movie">
       <img
-        src="{{ moviesPoster + movie['backdrop_path'] }}"
-        alt="{{ movie['title'] + ' Poster' }}"
+        src="{{ moviesPoster + movie.backdrop_path }}"
+        alt="{{ movie.title + ' Poster' }}"
       />
     </a>
     <figcaption>
-      {{ movie["original_title"] || movie["original_name"] }}
+      {{ movie.original_title || movie.original_name }}
     </figcaption>
   </figure>
-  <button type="button" (click)="nextImage()">Next</button>
-  <button type="button" (click)="prevImage()">Prev</button>
+  <button type="button" (click)="checkClick(); prevImage()" class="prev-btn">
+    <mat-icon>arrow_back_ios</mat-icon>
+  </button>
+  <button type="button" (click)="checkClick(); nextImage()" class="next-btn">
+    <mat-icon>arrow_forward_ios</mat-icon>
+  </button>
 </section>
-
-<!-- <router-outlet></router-outlet> -->
-<app-selected-movie-details></app-selected-movie-details>

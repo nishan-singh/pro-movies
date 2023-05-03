@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FetchdataService } from '../services/fetchdata.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movies-slider',
@@ -11,18 +12,26 @@ export class MoviesSliderComponent {
   resultTrendingMovies: any;
   currSliderImg: number = 0;
   playTransition: boolean;
+  playSlider: boolean = true;
 
   moviesPoster: string = 'https://image.tmdb.org/t/p/original';
 
-  constructor(private _apiservice: FetchdataService) {}
+  constructor(private _apiservice: FetchdataService, private route: Router) {}
 
   ngOnInit() {
     this._apiservice.getTrendings().subscribe((res) => {
       this.trendingMoviesData = res;
       this.resultTrendingMovies = this.trendingMoviesData.results;
       this.setIntervalNextImage();
-      console.log(this.resultTrendingMovies);
     });
+  }
+
+  // check Click
+  checkClick() {
+    this.playSlider = false;
+    setTimeout(() => {
+      this.playSlider = true;
+    }, 15000);
   }
 
   // next image
@@ -39,7 +48,9 @@ export class MoviesSliderComponent {
   // setInterval for next image
   setIntervalNextImage() {
     setInterval(() => {
-      this.nextImage();
+      if (this.playSlider === true) {
+        this.nextImage();
+      }
     }, 4000);
   }
 
@@ -47,14 +58,17 @@ export class MoviesSliderComponent {
   prevImage() {
     if (this.currSliderImg > 0) {
       this.currSliderImg -= 100;
+      this.playTransition = true;
     } else {
-      this.currSliderImg = this.resultTrendingMovies.length - 1;
+      this.currSliderImg = (this.resultTrendingMovies.length - 1) * 100;
+      this.playTransition = false;
     }
   }
-  showMovieDetails(i: number) {
-    this._apiservice.getSelectedMovie(i).subscribe((res) => {
-      console.log(res);
-    });
-    // console.log(this.resultTrendingMovies[i]['original_title']);
-  }
+
+  // getSelectedMovie() {
+  //   this.route.navigate(['selected-movie'], {
+  //     queryParams: {
+
+  //   });
+  // }
 }

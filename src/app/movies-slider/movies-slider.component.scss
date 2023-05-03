@@ -3,7 +3,7 @@
 .slider {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   position: relative;
   height: 65vh;
   width: 80%;
@@ -23,7 +23,7 @@
     }
   }
   .figure-transition {
-    transition: transform 450ms linear;
+    transition: transform 300ms linear;
   }
   figcaption {
     font-weight: 500;
@@ -31,11 +31,22 @@
     position: absolute;
     bottom: 1.75em;
     left: 1.25em;
-    padding: 8px;
+    padding: 2px 4px;
     line-height: 1;
+    background-color: rgba(0 0 0/0.2);
     p {
       font-size: 1em;
     }
+  }
+  .next-btn,
+  .prev-btn {
+    background-color: rgba(0 0 0/0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 8px;
+    width: 36px;
+    height: 60px;
   }
 }
 
@@ -43,6 +54,7 @@ button {
   position: relative;
   color: white;
 }
+
 @media (max-width: 872px) {
   .slider {
     height: 55vh;

@@ -21,9 +21,9 @@ export class FetchdataService {
     );
   }
 
-  getSelectedMovie(id: number) {
+  getSelectedMovieTrailer(id: number) {
     return this._http.get(
-      `${this.BASE_URL}/movie/${id}?${this.API_KEY}&language=en-US`
+      `${this.BASE_URL}/movie/${id}/videos?${this.API_KEY}&language=en-US`
     );
   }
 }
