@@ -9,8 +9,52 @@ import { FetchdataService } from '../services/fetchdata.service';
 export class MoviesComponent {
   newData: any;
   resultmovies: any;
-
   moviesPoster: string = 'https://image.tmdb.org/t/p/w500';
+
+  slides = [
+    { img: 'http://placehold.it/350x150/000000' },
+    { img: 'http://placehold.it/350x150/111111' },
+    { img: 'http://placehold.it/350x150/333333' },
+    { img: 'http://placehold.it/350x150/666666' },
+  ];
+
+  slideConfig = {
+    slidesToShow: 6,
+    slidesToScroll: 3,
+    infinite: false,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 3,
+          infinite: true,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 3,
+          infinite: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+    ],
+  };
 
   constructor(private _apiservice: FetchdataService) {}
 
@@ -18,11 +62,7 @@ export class MoviesComponent {
     this._apiservice.getMovies().subscribe((res) => {
       this.newData = res;
       this.resultmovies = this.newData.results;
+      console.log(this.resultmovies);
     });
-  }
-
-  // make a function named presentation for a carousel of movies poster
-  presentation(params: number) {
-    return this.moviesPoster + params;
   }
 }

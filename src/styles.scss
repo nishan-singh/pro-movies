@@ -43,3 +43,26 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+@media (max-width: 650px) {
+  .slick-next {
+    right: 0 !important;
+  }
+  .slick-prev {
+    left: -16px !important;
+    z-index: 1;
+  }
+  .slick-next::before,
+  .slick-prev::before {
+    font-size: 32px !important;
+  }
+}

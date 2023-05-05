@@ -51,7 +51,7 @@ export class MoviesSliderComponent {
       if (this.playSlider === true) {
         this.nextImage();
       }
-    }, 4000);
+    }, 2500);
   }
 
   // previous image

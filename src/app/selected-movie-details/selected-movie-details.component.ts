@@ -47,9 +47,9 @@ export class SelectedMovieDetailsComponent implements OnInit {
       });
   }
 
-  getTrailer() {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(
-      `https://www.youtube.com/embed/${this.selectedMovieTrailer?.key}`
-    );
-  }
+  // getTrailer() {
+  //   return this.sanitizer.bypassSecurityTrustResourceUrl(
+  //     `https://www.youtube.com/embed/${this.selectedMovieTrailer?.key}`
+  //   );
+  // }
 }

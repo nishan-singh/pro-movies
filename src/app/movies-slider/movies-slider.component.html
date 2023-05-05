@@ -6,13 +6,13 @@
   }"
     [class.figure-transition]="playTransition"
   >
-    <a [routerLink]="['/selected-movie']" [queryParams]="movie">
+    <a routerLink="/selected-movie" [queryParams]="movie">
       <img
         src="{{ moviesPoster + movie.backdrop_path }}"
         alt="{{ movie.title + ' Poster' }}"
       />
     </a>
-    <figcaption>
+    <figcaption class="figure-caption">
       {{ movie.original_title || movie.original_name }}
     </figcaption>
   </figure>

@@ -32,8 +32,19 @@
     bottom: 1.75em;
     left: 1.25em;
     padding: 2px 4px;
+    padding-inline-start: $desgin-padding;
     line-height: 1;
-    background-color: rgba(0 0 0/0.2);
+    background-color: rgba(0 0 0/0.3);
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 4px;
+      height: 100%;
+      background-color: $text-accent-color;
+      border-radius: 100vh;
+    }
     p {
       font-size: 1em;
     }
@@ -66,7 +77,6 @@ button {
   .slider {
     height: 45vh;
     width: 100%;
-    margin-inline: 6px;
     figure {
       height: 100%;
       img {

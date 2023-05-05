@@ -6,6 +6,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { YouTubePlayerModule } from '@angular/youtube-player';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,6 +31,7 @@ import { SelectedMovieDetailsComponent } from './selected-movie-details/selected
     MatIconModule,
     BrowserAnimationsModule,
     YouTubePlayerModule,
+    SlickCarouselModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

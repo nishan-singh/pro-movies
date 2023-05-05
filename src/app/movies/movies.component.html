@@ -1,17 +1,88 @@
 <app-movies-slider></app-movies-slider>
+
 <section class="rendered-movies">
-  <a
-    [routerLink]="['/selected-movie']"
-    [queryParams]="movie"
-    class="each-movie"
-    *ngFor="let movie of resultmovies"
-  >
-    <figure class="each-movie-figure">
-      <img
-        [src]="moviesPoster + movie.poster_path"
-        [alt]="movie.title + ' Poster'"
-      />
-      <figcaption class="title">{{ movie.title }}</figcaption>
-    </figure>
-  </a>
+  <div class="inner-wrapper">
+    <h2>Popular</h2>
+    <ngx-slick-carousel
+      class="carousel"
+      [config]="slideConfig"
+      #slickModal="slick-carousel"
+      style="width: 100%"
+      prevArrow="<button class='my-custom-prev-button'></button>"
+      nextArrow="<button class='my-custom-next-button'></button>"
+    >
+      <a
+        [routerLink]="['/selected-movie']"
+        [queryParams]="movie"
+        ngxSlickItem
+        *ngFor="let movie of resultmovies; let i = index"
+        class="each-movie"
+      >
+        <figure class="each-movie-figure">
+          <img
+            [src]="moviesPoster + movie.poster_path"
+            [alt]="movie.title + ' Poster'"
+            class="movie-poster"
+            width="100%"
+          />
+          <figcaption>
+            <span class="rating">
+              <svg
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+                xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:ns1="http://sozi.baierouge.fr"
+                xmlns:cc="http://creativecommons.org/ns#"
+                xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+                xmlns:dc="http://purl.org/dc/elements/1.1/"
+                id="svg2"
+                xml:space="preserve"
+                viewBox="0 0 45.05 41.35"
+                version="1.1"
+                inkscape:version="0.91 r13725"
+              >
+                <g id="g10" transform="matrix(1.25 0 0 -1.25 0 41.35)">
+                  <g id="g12">
+                    <path
+                      id="path14"
+                      style="fill-rule: evenodd; fill: #ffe94b"
+                      d="m36.039 20.799-7.437-8.438 2-11.961-11.481 7.481-12.281-7.883 2.32 12.844-9.16 6.316 12.52 1.961 4.882 11.961 6.879-10.762 11.758-1.519z"
+                      inkscape:connector-curvature="0"
+                    />
+                  </g>
+                </g>
+              </svg>
+              <p>{{ movie.vote_average }}</p>
+            </span>
+
+            <p class="title">
+              {{ movie.title }}
+            </p>
+          </figcaption>
+        </figure>
+      </a>
+    </ngx-slick-carousel>
+  </div>
 </section>
+
+<!-- 
+  <section class="movies-wrapper">
+    <button
+    type="button"
+    *ngIf="!hideForwardBtn"
+    (click)="slideForwards()"
+    class="slider-btn forward"
+    >
+    <mat-icon>keyboard_arrow_right</mat-icon>
+  </button>
+  <button
+  type="button"
+  *ngIf="!hidePrevBtn"
+  (click)="slideBackwards()"
+  class="slider-btn previous"
+  >
+  <mat-icon>keyboard_arrow_left</mat-icon>
+</button>
+</section>
+-->

@@ -1,6 +1,9 @@
-<article class="video-container">
-  <div class="iframe-container">
-    <iframe [src]="getTrailer()" allowfullscreen></iframe>
+<article class="video-desc-wrapper">
+  <div class="video-container">
+    <youtube-player
+      [videoId]="selectedMovieTrailer?.key"
+      class="iframe-container"
+    >
+    </youtube-player>
   </div>
-  <p>This is my Title</p>
 </article>
