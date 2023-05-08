@@ -1,21 +1,29 @@
 <section class="slider" role="presentation">
-  <figure
+  <a
     *ngFor="let movie of resultTrendingMovies; let i = index"
-    [ngStyle]="{
+    routerLink="/selected-movie"
+    [queryParams]="movie"
+    class="movie-link"
+  >
+    <figure
+      *ngIf="isLoaded"
+      [ngStyle]="{
     transform: 'translateX(' + (100 * i - currSliderImg) + '%)',
   }"
-    [class.figure-transition]="playTransition"
-  >
-    <a routerLink="/selected-movie" [queryParams]="movie">
+      [class.figure-transition]="playTransition"
+    >
       <img
-        src="{{ moviesPoster + movie.backdrop_path }}"
+        *ngIf="isLoaded"
+        src="{{ moviesPoster + movie?.backdrop_path }}"
         alt="{{ movie.title + ' Poster' }}"
       />
-    </a>
-    <figcaption class="figure-caption">
-      {{ movie.original_title || movie.original_name }}
-    </figcaption>
-  </figure>
+      <figcaption class="figure-caption">
+        <p>
+          {{ movie.original_title || movie.original_name }}
+        </p>
+      </figcaption>
+    </figure>
+  </a>
   <button type="button" (click)="checkClick(); prevImage()" class="prev-btn">
     <mat-icon>arrow_back_ios</mat-icon>
   </button>

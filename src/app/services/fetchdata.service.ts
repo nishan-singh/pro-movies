@@ -9,21 +9,45 @@ export class FetchdataService {
   BASE_URL = `https://api.themoviedb.org/3`;
   constructor(private _http: HttpClient) {}
 
-  getMovies() {
+  getMovies(i: number) {
     return this._http.get(
-      `${this.BASE_URL}/discover/movie?${this.API_KEY}&language=en-US&sort_by=popularity.desc&include_video_language&page=1`
+      `${this.BASE_URL}/discover/movie?${this.API_KEY}&language=en-US&sort_by=popularity.desc&include_video_language&page=${i}`
     );
   }
 
-  getTrendings() {
+  getTvShows(i: number) {
     return this._http.get(
-      `${this.BASE_URL}/trending/all/day?${this.API_KEY}&language=en-US&page=1`
+      `${this.BASE_URL}/tv/top_rated?${this.API_KEY}&language=en-US&sort_by=popularity.desc&include_video_language&page=${i}`
     );
   }
 
-  getSelectedMovieTrailer(id: number) {
+  getTrendings(i: number) {
     return this._http.get(
-      `${this.BASE_URL}/movie/${id}/videos?${this.API_KEY}&language=en-US`
+      `${this.BASE_URL}/trending/all/day?${this.API_KEY}&language=en-US&page=${i}`
+    );
+  }
+
+  getUpcoming(i: number) {
+    return this._http.get(
+      `${this.BASE_URL}/movie/upcoming?${this.API_KEY}&language=en-US&page=${i}`
+    );
+  }
+
+  getSearchResults(name: string, i: number) {
+    return this._http.get(
+      `${this.BASE_URL}/search/multi?${this.API_KEY}&language=en-US&query=${name}&page=${i}`
+    );
+  }
+
+  getSelectedItemDetails(type: string, id: number) {
+    return this._http.get(
+      `${this.BASE_URL}/${type}/${id}?${this.API_KEY}&language=en-US`
+    );
+  }
+
+  getSelectedItemTrailer(type: string, id: number) {
+    return this._http.get(
+      `${this.BASE_URL}/${type}/${id}/videos?${this.API_KEY}&language=en-US`
     );
   }
 }

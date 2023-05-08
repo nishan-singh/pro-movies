@@ -1,27 +1,23 @@
-import {
-  Component,
-  OnInit,
-  HostListener,
-  ElementRef,
-  ViewChild,
-} from '@angular/core';
+import { Component, HostListener, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-nav-sidebar',
   templateUrl: './nav-sidebar.component.html',
   styleUrls: ['./nav-sidebar.component.scss'],
 })
-export class NavbarComponent implements OnInit {
+export class NavSidebarComponent {
   showSearch: boolean = false;
   hideNavbar: boolean = false;
   reason = '';
+  searchInput;
   @ViewChild('sidenav') sidenav: MatSidenav;
 
-  constructor() {}
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {}
-
+  5;
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     return window.innerWidth < 650;
@@ -38,6 +34,10 @@ export class NavbarComponent implements OnInit {
       this.showSearch = true;
     } else {
       this.showSearch = false;
+      this.router.navigate(['/search-results'], {
+        queryParams: { q: this.searchInput },
+      });
+      this.searchInput = '';
     }
   }
 

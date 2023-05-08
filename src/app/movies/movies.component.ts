@@ -1,4 +1,4 @@
-import { Component, inject, InjectionToken } from '@angular/core';
+import { Component } from '@angular/core';
 import { FetchdataService } from '../services/fetchdata.service';
 
 @Component({
@@ -7,16 +7,13 @@ import { FetchdataService } from '../services/fetchdata.service';
   styleUrls: ['./movies.component.scss'],
 })
 export class MoviesComponent {
-  newData: any;
+  recievedMovies: any;
+  recievedTVShows: any;
+  recievedUpcoming: any;
   resultmovies: any;
+  resultTVShows: any;
+  resultUpcoming: any;
   moviesPoster: string = 'https://image.tmdb.org/t/p/w500';
-
-  slides = [
-    { img: 'http://placehold.it/350x150/000000' },
-    { img: 'http://placehold.it/350x150/111111' },
-    { img: 'http://placehold.it/350x150/333333' },
-    { img: 'http://placehold.it/350x150/666666' },
-  ];
 
   slideConfig = {
     slidesToShow: 6,
@@ -59,10 +56,17 @@ export class MoviesComponent {
   constructor(private _apiservice: FetchdataService) {}
 
   ngOnInit() {
-    this._apiservice.getMovies().subscribe((res) => {
-      this.newData = res;
-      this.resultmovies = this.newData.results;
-      console.log(this.resultmovies);
+    this._apiservice.getTrendings(1).subscribe((res) => {
+      this.recievedMovies = res;
+      this.resultmovies = this.recievedMovies.results;
+    });
+    this._apiservice.getTvShows(1).subscribe((res) => {
+      this.recievedTVShows = res;
+      this.resultTVShows = this.recievedTVShows.results;
+    });
+    this._apiservice.getUpcoming(1).subscribe((res) => {
+      this.recievedUpcoming = res;
+      this.resultUpcoming = this.recievedUpcoming.results;
     });
   }
 }

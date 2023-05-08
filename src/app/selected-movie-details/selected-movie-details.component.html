@@ -1,9 +1,54 @@
 <article class="video-desc-wrapper">
-  <div class="video-container">
-    <youtube-player
-      [videoId]="selectedMovieTrailer?.key"
-      class="iframe-container"
-    >
-    </youtube-player>
+  <div class="inner-container">
+    <section class="video-container">
+      <youtube-player
+        [videoId]="selectedItemTrailer?.key || 'videoId'"
+        class="iframe-container"
+        *ngIf="isLoaded"
+      >
+      </youtube-player>
+      <mat-card
+        class="loading-container"
+        *ngIf="!isLoaded && !selectedItemTrailer"
+      >
+        <mat-spinner style="width: 75px; height: 75px"></mat-spinner>
+        <mat-card-content>
+          <h2 class="example-h2">Loading...</h2>
+        </mat-card-content>
+      </mat-card>
+    </section>
+    <section class="video-infos" *ngIf="isLoaded">
+      <h2>{{ itemDetails?.original_title || itemDetails?.name }}</h2>
+      <span>
+        <svg
+          xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+          xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:ns1="http://sozi.baierouge.fr"
+          xmlns:cc="http://creativecommons.org/ns#"
+          xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+          xmlns:dc="http://purl.org/dc/elements/1.1/"
+          id="svg2"
+          xml:space="preserve"
+          viewBox="0 0 45.05 41.35"
+          version="1.1"
+          inkscape:version="0.91 r13725"
+        >
+          <g id="g10" transform="matrix(1.25 0 0 -1.25 0 41.35)">
+            <g id="g12">
+              <path
+                id="path14"
+                style="fill-rule: evenodd; fill: #ffe94b"
+                d="m36.039 20.799-7.437-8.438 2-11.961-11.481 7.481-12.281-7.883 2.32 12.844-9.16 6.316 12.52 1.961 4.882 11.961 6.879-10.762 11.758-1.519z"
+                inkscape:connector-curvature="0"
+              />
+            </g>
+          </g>
+        </svg>
+        <p>{{ itemDetails?.vote_average | number : "1.0-1" }}</p>
+      </span>
+      <p>{{ itemDetails?.overview }}</p>
+    </section>
   </div>
 </article>

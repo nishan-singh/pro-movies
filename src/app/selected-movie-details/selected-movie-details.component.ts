@@ -1,7 +1,8 @@
-import { Component, Injectable, Input, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FetchdataService } from '../services/fetchdata.service';
-import { DomSanitizer } from '@angular/platform-browser';
+import { ThemePalette } from '@angular/material/core';
+import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-selected-movie-details',
@@ -12,44 +13,53 @@ import { DomSanitizer } from '@angular/platform-browser';
   providedIn: 'root',
 })
 export class SelectedMovieDetailsComponent implements OnInit {
-  movieDetails: any;
+  isLoaded: boolean = false;
+  recievedDetails: any;
   selectedMovieVideoLinks: any;
   selectedMovieVideo: any;
-  selectedMovieTrailer: any;
-  player: any;
-  videoId: any;
+  selectedItemTrailer: any;
+  itemDetails: any;
+  mediaType: string = '';
+  color: ThemePalette = 'primary';
+  mode: ProgressSpinnerMode = 'determinate';
+  value = 50;
 
   constructor(
     private route: ActivatedRoute,
-    private _apiservice: FetchdataService,
-    private sanitizer: DomSanitizer
+    private _apiservice: FetchdataService
   ) {
     this.route.queryParams.subscribe((params) => {
-      this.movieDetails = params;
+      this.recievedDetails = params;
     });
   }
 
   ngOnInit() {
+    if (this.recievedDetails?.media_type === 'movie') {
+      this.mediaType = 'movie';
+    } else {
+      this.mediaType = 'tv';
+    }
     this.getSelectedMovieDetails();
   }
 
   getSelectedMovieDetails() {
     this._apiservice
-      .getSelectedMovieTrailer(this.movieDetails['id'])
+      .getSelectedItemDetails(this.mediaType, this.recievedDetails['id'])
+      .subscribe((data: any) => {
+        this.itemDetails = data;
+      });
+
+    this._apiservice
+      .getSelectedItemTrailer(this.mediaType, this.recievedDetails['id'])
       .subscribe((data) => {
         this.selectedMovieVideoLinks = data;
         this.selectedMovieVideo = this.selectedMovieVideoLinks.results;
-        this.selectedMovieTrailer = this.selectedMovieVideo.find(
+        this.selectedItemTrailer = this.selectedMovieVideo.find(
           (element: any) => {
             return element.type === 'Trailer';
           }
         );
+        this.isLoaded = true;
       });
   }
-
-  // getTrailer() {
-  //   return this.sanitizer.bypassSecurityTrustResourceUrl(
-  //     `https://www.youtube.com/embed/${this.selectedMovieTrailer?.key}`
-  //   );
-  // }
 }

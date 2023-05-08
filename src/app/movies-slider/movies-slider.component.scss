@@ -2,39 +2,43 @@
 
 .slider {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   position: relative;
   height: 65vh;
   width: 80%;
   overflow: hidden;
   cursor: pointer;
-  figure {
+  .movie-link {
+    display: block;
     width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
     bottom: 0;
+  }
+  figure {
+    width: 100%;
+    height: 100%;
+    position: relative;
     img {
-      width: 100%;
+      display: block;
       height: 100%;
-      object-fit: cover;
-      margin-block-end: 1em;
+      background-color: $secondary-color;
     }
   }
   .figure-transition {
     transition: transform 300ms linear;
   }
   figcaption {
-    font-weight: 500;
-    font-size: 2.5em;
     position: absolute;
-    bottom: 1.75em;
-    left: 1.25em;
-    padding: 2px 4px;
-    padding-inline-start: $desgin-padding;
+    bottom: 24px;
+    left: 24px;
+    font-weight: 500;
+    font-size: 3em;
     line-height: 1;
-    background-color: rgba(0 0 0/0.3);
+    padding-inline-start: $design-padding;
+    // box-shadow: 8px 0 2px 6px red;
     &::before {
       content: "";
       position: absolute;
@@ -46,15 +50,19 @@
       border-radius: 100vh;
     }
     p {
-      font-size: 1em;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      overflow: hidden;
+      margin: 0;
+      background-color: rgba(0 0 0/0.5);
+      padding: 6px;
     }
   }
   .next-btn,
   .prev-btn {
     background-color: rgba(0 0 0/0.5);
     display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 4px 8px;
     width: 36px;
     height: 60px;
@@ -81,7 +89,6 @@ button {
       height: 100%;
       img {
         height: 100%;
-        object-fit: cover;
       }
       figcaption {
         font-size: 1.5em;

@@ -1,0 +1,30 @@
+<section class="search-result-wrapper">
+  <h2>Search Results for &nbsp;&quot;{{ searchTerm }}&quot;</h2>
+  <article
+    class="each-search-result-wrapper"
+    *ngFor="let result of searchResults"
+    [ngStyle]="{ display: !result?.poster_path ? 'none' : 'block' }"
+  >
+    <figure *ngIf="result?.poster_path">
+      <img
+        src="{{ moviesPoster + result?.poster_path }}"
+        alt="{{ result?.original_title + ' Poster' }}"
+      />
+      <figcaption>
+        <h2 class="title">{{ result?.original_title }}</h2>
+        <p class="overview">{{ result?.overview }}</p>
+        <p>
+          Released on:<strong> {{ result?.release_date }}</strong>
+        </p>
+        <a
+          [routerLink]="['/selected-movie']"
+          [queryParams]="result"
+          class="trailer-link"
+        >
+          <mat-icon>play_arrow</mat-icon>
+          <span> Watch Trailer </span></a
+        >
+      </figcaption>
+    </figure>
+  </article>
+</section>

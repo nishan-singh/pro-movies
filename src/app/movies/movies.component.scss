@@ -16,14 +16,13 @@ app-movies {
   .inner-wrapper {
     position: relative;
     width: 80%;
-    margin-block: 32px;
-    margin-bottom: 100px;
+    margin-block-start: 32px;
     h2 {
       font-size: 2.25em;
       position: relative;
       color: $text-accent-color;
       margin-block-end: 32px;
-      padding-inline-start: $desgin-padding;
+      padding-inline-start: $design-padding;
       &::before {
         content: "";
         position: absolute;
@@ -46,19 +45,21 @@ app-movies {
   position: relative;
   margin-inline-end: 1em;
   background-color: $secondary-color;
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 6px 6px;
   padding-block-end: 24px;
+  .d-none {
+    display: none;
+  }
+  .each-movie-figure,
+  .each-tvshow-figure {
+    width: 100%;
+  }
   img {
-    filter: brightness(65%);
     object-position: center;
-    object-fit: cover;
     margin-block-end: 24px;
-    &:hover {
-      filter: brightness(100%);
-    }
   }
   figcaption {
-    margin-inline: 12px;
+    padding-inline: 12px;
     .rating {
       display: flex;
       gap: 8px;
@@ -66,15 +67,15 @@ app-movies {
         width: 18px;
       }
       p {
-        margin: 0;
         font-size: 1.125em;
+        margin: 0;
       }
     }
     .title {
       position: relative;
       font-weight: 400;
       font-size: 1.25em;
-      padding-inline-start: $desgin-padding;
+      padding-inline-start: $design-padding;
       display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 1;
@@ -104,7 +105,7 @@ app-movies {
       .each-movie {
         margin-inline-end: 0.75em;
         figcaption {
-          margin-inline: 8px;
+          padding-inline: 8px;
         }
       }
     }

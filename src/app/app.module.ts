@@ -7,21 +7,26 @@ import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { FormsModule } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCardModule } from '@angular/material/card';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MoviesComponent } from './movies/movies.component';
-import { NavbarComponent } from './nav-sidebar/nav-sidebar.component';
 import { MoviesSliderComponent } from './movies-slider/movies-slider.component';
 import { SelectedMovieDetailsComponent } from './selected-movie-details/selected-movie-details.component';
+import { SearchResultsComponent } from './search-results/search-results.component';
+import { NavSidebarComponent } from './nav-sidebar/nav-sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MoviesComponent,
-    NavbarComponent,
     MoviesSliderComponent,
     SelectedMovieDetailsComponent,
+    SearchResultsComponent,
+    NavSidebarComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +37,9 @@ import { SelectedMovieDetailsComponent } from './selected-movie-details/selected
     BrowserAnimationsModule,
     YouTubePlayerModule,
     SlickCarouselModule,
+    FormsModule,
+    MatProgressSpinnerModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
