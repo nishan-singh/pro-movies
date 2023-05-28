@@ -30,19 +30,30 @@ export class SelectedMovieDetailsComponent implements OnInit {
   ) {
     this.route.queryParams.subscribe((params) => {
       this.recievedDetails = params;
+      console.log(this.recievedDetails);
     });
   }
 
   ngOnInit() {
-    if (this.recievedDetails?.media_type === 'movie') {
-      this.mediaType = 'movie';
-    } else {
-      this.mediaType = 'tv';
-    }
     this.getSelectedMovieDetails();
   }
 
+  checkIfUpcoming() {
+    if (
+      this.recievedDetails['type'] === 'upcoming' ||
+      this.recievedDetails['type'] === 'trending'
+    ) {
+      this.mediaType = 'movie';
+    } else {
+      this.mediaType = this.recievedDetails['media_type']
+        ? this.recievedDetails['media_type']
+        : 'tv';
+    }
+  }
+
   getSelectedMovieDetails() {
+    this.checkIfUpcoming();
+
     this._apiservice
       .getSelectedItemDetails(this.mediaType, this.recievedDetails['id'])
       .subscribe((data: any) => {

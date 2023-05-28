@@ -6,7 +6,7 @@
 }
 
 .navbar {
-  position: fixed;
+  position: sticky;
   top: 0;
 }
 
@@ -63,7 +63,6 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: transform 125ms linear;
   .search-input {
     height: 100%;
     color: $text-secondary-color;
@@ -287,6 +286,7 @@ a {
     right: 0;
     transform: translateY(-72px);
     visibility: hidden;
+    transition: transform 125ms linear;
   }
 
   .show-input-search {
@@ -298,6 +298,7 @@ a {
       background-color: $secondary-color;
       color: $text-primary-color;
       border-radius: 0;
+      flex: 1;
     }
   }
   .sidebar-drawer {

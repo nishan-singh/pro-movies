@@ -1,33 +1,35 @@
 <section class="slider" role="presentation">
-  <a
-    *ngFor="let movie of resultTrendingMovies; let i = index"
-    routerLink="/selected-movie"
-    [queryParams]="movie"
-    class="movie-link"
-  >
-    <figure
-      *ngIf="isLoaded"
-      [ngStyle]="{
-    transform: 'translateX(' + (100 * i - currSliderImg) + '%)',
-  }"
-      [class.figure-transition]="playTransition"
-    >
-      <img
-        *ngIf="isLoaded"
-        src="{{ moviesPoster + movie?.backdrop_path }}"
-        alt="{{ movie.title + ' Poster' }}"
-      />
-      <figcaption class="figure-caption">
-        <p>
-          {{ movie.original_title || movie.original_name }}
-        </p>
-      </figcaption>
-    </figure>
-  </a>
-  <button type="button" (click)="checkClick(); prevImage()" class="prev-btn">
+  <button type="button" class="prev-btn" (click)="prevMovie()">
     <mat-icon>arrow_back_ios</mat-icon>
   </button>
-  <button type="button" (click)="checkClick(); nextImage()" class="next-btn">
+  <ngx-slick-carousel
+    class="carousel"
+    [config]="slideConfig"
+    #slickModal="slick-carousel"
+    style="width: 100%; height: 100%"
+  >
+    <a
+      *ngFor="let movie of resultTrendingMovies"
+      [routerLink]="['/selected-movie']"
+      [queryParams]="{ id: movie.id, type: 'trending' }"
+      ngxSlickItem
+      style="width: 85vw !important"
+    >
+      <figure class="each-movie-figure">
+        <img
+          src="{{ moviesPoster + movie?.backdrop_path }}"
+          [alt]="movie.title + ' Poster'"
+          min-height="250px"
+        />
+        <figcaption>
+          <p>
+            {{ movie.original_title || movie.original_name }}
+          </p>
+        </figcaption>
+      </figure>
+    </a>
+  </ngx-slick-carousel>
+  <button type="button" class="next-btn" (click)="nextMovie()">
     <mat-icon>arrow_forward_ios</mat-icon>
   </button>
 </section>

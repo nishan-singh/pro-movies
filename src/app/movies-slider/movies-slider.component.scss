@@ -7,7 +7,6 @@
   position: relative;
   height: 65vh;
   width: 80%;
-  overflow: hidden;
   cursor: pointer;
   .movie-link {
     display: block;
@@ -57,6 +56,7 @@
       margin: 0;
       background-color: rgba(0 0 0/0.5);
       padding: 6px;
+      line-height: 1.35;
     }
   }
   .next-btn,
@@ -66,12 +66,32 @@
     padding: 4px 8px;
     width: 36px;
     height: 60px;
+    color: white;
+    justify-content: flex-end;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
   }
-}
-
-button {
-  position: relative;
-  color: white;
+  .next-btn {
+    right: 0;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+  .prev-btn {
+    left: 0;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
 }
 
 @media (max-width: 872px) {
@@ -83,7 +103,7 @@ button {
 
 @media (max-width: 450px) {
   .slider {
-    height: 45vh;
+    height: 40vh;
     width: 100%;
     figure {
       height: 100%;
@@ -91,7 +111,7 @@ button {
         height: 100%;
       }
       figcaption {
-        font-size: 1.5em;
+        font-size: 1.5rem;
       }
     }
   }

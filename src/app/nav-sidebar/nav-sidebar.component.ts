@@ -1,6 +1,6 @@
-import { Component, HostListener, ViewChild } from '@angular/core';
+import { Component, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-sidebar',
@@ -11,15 +11,14 @@ export class NavSidebarComponent {
   showSearch: boolean = false;
   hideNavbar: boolean = false;
   reason = '';
-  searchInput;
+  searchInput: string = '';
   @ViewChild('sidenav') sidenav: MatSidenav;
+  @ViewChild('search', { static: false }) search: ElementRef;
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(private router: Router) {}
 
-  ngOnInit() {}
-  5;
   @HostListener('window:resize', ['$event'])
-  onResize(event) {
+  onResize(event: any) {
     return window.innerWidth < 650;
   }
 
@@ -30,15 +29,25 @@ export class NavSidebarComponent {
   }
 
   searchMovie() {
+    console.log('clicked');
     if (this.onResize(window)) {
       this.showSearch = true;
+      setTimeout(() => {
+        this.search.nativeElement.focus();
+      }, 0);
     } else {
       this.showSearch = false;
-      this.router.navigate(['/search-results'], {
-        queryParams: { q: this.searchInput },
-      });
-      this.searchInput = '';
     }
+    this.showResults();
+  }
+
+  showResults() {
+    if (this.searchInput === '') return;
+    this.router.navigate(['/search-results'], {
+      queryParams: { q: this.searchInput },
+    });
+    this.searchInput = '';
+    this.closeSearchBar();
   }
 
   closeSearchBar() {

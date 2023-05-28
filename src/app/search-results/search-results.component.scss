@@ -49,16 +49,51 @@
           font-size: 1.5em;
           font-weight: 500;
         }
-        .overview {
-          display: -webkit-box;
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 4;
-          overflow: hidden;
-        }
         p {
           margin-block: 12px;
           strong {
             font-weight: 500;
+          }
+        }
+        .release-date {
+          color: $text-accent-color;
+        }
+      }
+    }
+  }
+  .overview {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 572px) {
+  .search-result-wrapper {
+    margin-inline: 16px;
+    .each-search-result-wrapper {
+      figure {
+        max-height: 180px;
+        img {
+          border-radius: 8px 0 0 8px;
+          max-height: 100%;
+          object-fit: contain;
+          object-position: left;
+        }
+        figcaption {
+          margin: 12px 12px 12px 0;
+          p,
+          h2 {
+            margin-block: 8px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+          }
+          h2 {
+            font-size: 1.25em;
+            -webkit-line-clamp: 1;
           }
         }
       }

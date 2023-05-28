@@ -16,14 +16,14 @@ export class MoviesComponent {
   moviesPoster: string = 'https://image.tmdb.org/t/p/w500';
 
   slideConfig = {
-    slidesToShow: 6,
+    slidesToShow: 5.5,
     slidesToScroll: 3,
     infinite: false,
     responsive: [
       {
         breakpoint: 1200,
         settings: {
-          slidesToShow: 5,
+          slidesToShow: 4.5,
           slidesToScroll: 3,
           infinite: true,
         },
@@ -46,7 +46,7 @@ export class MoviesComponent {
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 2.5,
           slidesToScroll: 2,
         },
       },
