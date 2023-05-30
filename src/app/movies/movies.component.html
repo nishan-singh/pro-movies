@@ -1,6 +1,6 @@
 <app-movies-slider></app-movies-slider>
 
-<section class="rendered-movies">
+<section class="rendered-movies upcoming">
   <div class="inner-wrapper">
     <h2>Upcoming</h2>
     <ngx-slick-carousel
@@ -10,10 +10,10 @@
       style="width: 100%"
     >
       <a
+        *ngFor="let upcoming of resultUpcoming"
         [routerLink]="['/selected-movie']"
-        [queryParams]="upcoming"
+        [queryParams]="{ id: upcoming.id, type: 'upcoming' }"
         ngxSlickItem
-        *ngFor="let upcoming of resultUpcoming; let i = index"
         class="each-movie"
         [class.d-none]="upcoming?.backdrop_path"
       >
@@ -57,7 +57,7 @@
             </span>
 
             <p class="title">
-              {{ upcoming.original_title || upcoming.original_name }}
+              {{ upcoming.title || upcoming.original_name }}
             </p>
           </figcaption>
         </figure>
@@ -78,10 +78,10 @@
       nextArrow="<button class='my-custom-next-button'></button>"
     >
       <a
-        [routerLink]="['/selected-movie']"
-        [queryParams]="show"
-        ngxSlickItem
         *ngFor="let show of resultTVShows; let i = index"
+        [routerLink]="['/selected-movie']"
+        [queryParams]="{ id: show.id }"
+        ngxSlickItem
         class="each-movie"
         [class.d-none]="show?.backdrop_path"
       >
@@ -125,7 +125,7 @@
             </span>
 
             <p class="title">
-              {{ show.original_title || show.original_name }}
+              {{ show.title || show.name }}
             </p>
           </figcaption>
         </figure>
@@ -136,7 +136,7 @@
 
 <section class="rendered-movies">
   <div class="inner-wrapper">
-    <h2>Trendings</h2>
+    <h2>Trending</h2>
     <ngx-slick-carousel
       class="carousel"
       [config]="slideConfig"
@@ -146,17 +146,17 @@
       nextArrow="<button class='my-custom-next-button'></button>"
     >
       <a
+        *ngFor="let trending of resultMovies; let i = index"
         [routerLink]="['/selected-movie']"
-        [queryParams]="movie"
+        [queryParams]="{ id: trending.id, type: 'trending' }"
         ngxSlickItem
-        *ngFor="let movie of resultmovies; let i = index"
         class="each-movie"
         m
       >
         <figure class="each-movie-figure">
           <img
-            [src]="moviesPoster + movie?.poster_path"
-            [alt]="movie.title + ' Poster'"
+            [src]="moviesPoster + trending?.poster_path"
+            [alt]="trending.title + ' Poster'"
             class="movie-poster"
             width="100%"
             min-height="250px"
@@ -189,11 +189,11 @@
                   </g>
                 </g>
               </svg>
-              <p>{{ movie.vote_average | number : "1.0-1" }}</p>
+              <p>{{ trending.vote_average | number : "1.0-1" }}</p>
             </span>
 
             <p class="title">
-              {{ movie.original_title || movie.original_name }}
+              {{ trending.title || trending.original_name }}
             </p>
           </figcaption>
         </figure>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FetchdataService } from '../services/fetchdata.service';
+import { FetchDataService } from '../services/fetch-data.service';
 
 @Component({
   selector: 'app-search-results',
@@ -15,7 +15,7 @@ export class SearchResultsComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private _apiservice: FetchdataService
+    private _apiService: FetchDataService
   ) {}
 
   ngOnInit() {
@@ -25,7 +25,7 @@ export class SearchResultsComponent {
     });
   }
   getResults() {
-    this._apiservice.getSearchResults(this.searchTerm, 1).subscribe((res) => {
+    this._apiService.getSearchResults(this.searchTerm, 1).subscribe((res) => {
       this.recievedData = res;
       this.searchResults = this.recievedData.results;
     });

@@ -47,6 +47,14 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+main {
+  margin-block-start: 16px;
+}
+.slick-list,
+.slick-track {
+  height: 100%;
+}
+
 @media (max-width: 650px) {
   .slick-next {
     right: 0 !important;

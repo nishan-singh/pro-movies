@@ -18,7 +18,7 @@
       </mat-card>
     </section>
     <section class="video-infos" *ngIf="isLoaded">
-      <h2>{{ itemDetails?.original_title || itemDetails?.name }}</h2>
+      <h2>{{ itemDetails?.title || itemDetails?.name }}</h2>
       <span>
         <svg
           xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -52,3 +52,5 @@
     </section>
   </div>
 </article>
+
+<button type="button" (click)="goBack()">back</button>

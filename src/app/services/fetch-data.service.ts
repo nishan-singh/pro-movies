@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class FetchdataService {
+export class FetchDataService {
   API_KEY = `api_key=978c12f041e8c2e186d9bec80f97f6a1`;
   BASE_URL = `https://api.themoviedb.org/3`;
   constructor(private _http: HttpClient) {}
@@ -21,7 +21,7 @@ export class FetchdataService {
     );
   }
 
-  getTrendings(i: number) {
+  getTrending(i: number) {
     return this._http.get(
       `${this.BASE_URL}/trending/all/day?${this.API_KEY}&language=en-US&page=${i}`
     );

@@ -8,12 +8,12 @@
     <figure *ngIf="result?.poster_path">
       <img
         src="{{ moviesPoster + result?.poster_path }}"
-        alt="{{ result?.original_title + ' Poster' }}"
+        alt="{{ result?.title + ' Poster' }}"
       />
       <figcaption>
-        <h2 class="title">{{ result?.original_title }}</h2>
+        <h2 class="title">{{ result?.title }}</h2>
         <p class="overview">{{ result?.overview }}</p>
-        <p>
+        <p class="release-date">
           Released on:<strong> {{ result?.release_date }}</strong>
         </p>
         <a

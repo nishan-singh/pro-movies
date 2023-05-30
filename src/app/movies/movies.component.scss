@@ -10,13 +10,17 @@ app-movies {
   background-color: white;
 }
 
+.upcoming {
+  margin-block-start: 32px;
+}
+
 .rendered-movies {
   display: flex;
   justify-content: center;
   .inner-wrapper {
     position: relative;
     width: 80%;
-    margin-block-start: 32px;
+    margin-block-end: 36px;
     h2 {
       font-size: 2.25em;
       position: relative;

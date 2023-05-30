@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FetchdataService } from '../services/fetchdata.service';
+import { FetchDataService } from '../services/fetch-data.service';
 
 @Component({
   selector: 'app-movies',
@@ -7,25 +7,24 @@ import { FetchdataService } from '../services/fetchdata.service';
   styleUrls: ['./movies.component.scss'],
 })
 export class MoviesComponent {
-  recievedMovies: any;
-  recievedTVShows: any;
-  recievedUpcoming: any;
-  resultmovies: any;
+  receivedMovies: any;
+  receivedTVShows: any;
+  receivedUpcoming: any;
+  resultMovies: any;
   resultTVShows: any;
   resultUpcoming: any;
   moviesPoster: string = 'https://image.tmdb.org/t/p/w500';
 
   slideConfig = {
-    slidesToShow: 6,
+    slidesToShow: 5.5,
     slidesToScroll: 3,
     infinite: false,
     responsive: [
       {
         breakpoint: 1200,
         settings: {
-          slidesToShow: 5,
+          slidesToShow: 4.5,
           slidesToScroll: 3,
-          infinite: true,
         },
       },
       {
@@ -33,7 +32,6 @@ export class MoviesComponent {
         settings: {
           slidesToShow: 4,
           slidesToScroll: 3,
-          infinite: true,
         },
       },
       {
@@ -46,27 +44,27 @@ export class MoviesComponent {
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 2.5,
           slidesToScroll: 2,
         },
       },
     ],
   };
 
-  constructor(private _apiservice: FetchdataService) {}
+  constructor(private _apiService: FetchDataService) {}
 
   ngOnInit() {
-    this._apiservice.getTrendings(1).subscribe((res) => {
-      this.recievedMovies = res;
-      this.resultmovies = this.recievedMovies.results;
+    this._apiService.getUpcoming(1).subscribe((res) => {
+      this.receivedUpcoming = res;
+      this.resultUpcoming = this.receivedUpcoming.results;
     });
-    this._apiservice.getTvShows(1).subscribe((res) => {
-      this.recievedTVShows = res;
-      this.resultTVShows = this.recievedTVShows.results;
+    this._apiService.getTvShows(1).subscribe((res) => {
+      this.receivedTVShows = res;
+      this.resultTVShows = this.receivedTVShows.results;
     });
-    this._apiservice.getUpcoming(1).subscribe((res) => {
-      this.recievedUpcoming = res;
-      this.resultUpcoming = this.recievedUpcoming.results;
+    this._apiService.getTrending(1).subscribe((res) => {
+      this.receivedMovies = res;
+      this.resultMovies = this.receivedMovies.results;
     });
   }
 }

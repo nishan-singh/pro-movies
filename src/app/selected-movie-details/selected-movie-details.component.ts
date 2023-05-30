@@ -1,6 +1,7 @@
 import { Component, Injectable, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { FetchdataService } from '../services/fetchdata.service';
+import { FetchDataService } from '../services/fetch-data.service';
 import { ThemePalette } from '@angular/material/core';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 
@@ -14,7 +15,7 @@ import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 })
 export class SelectedMovieDetailsComponent implements OnInit {
   isLoaded: boolean = false;
-  recievedDetails: any;
+  receivedDetails: any;
   selectedMovieVideoLinks: any;
   selectedMovieVideo: any;
   selectedItemTrailer: any;
@@ -26,31 +27,34 @@ export class SelectedMovieDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private _apiservice: FetchdataService
+    private _apiService: FetchDataService,
+    private location: Location
   ) {
     this.route.queryParams.subscribe((params) => {
-      this.recievedDetails = params;
+      this.receivedDetails = params;
+      console.log(this.receivedDetails);
     });
   }
 
   ngOnInit() {
-    if (this.recievedDetails?.media_type === 'movie') {
-      this.mediaType = 'movie';
-    } else {
-      this.mediaType = 'tv';
-    }
     this.getSelectedMovieDetails();
   }
 
+  checkMediaType() {
+    this.mediaType = this.receivedDetails['mediaType'] || 'movie';
+    console.log(this.mediaType);
+  }
+
   getSelectedMovieDetails() {
-    this._apiservice
-      .getSelectedItemDetails(this.mediaType, this.recievedDetails['id'])
+    this.checkMediaType();
+    this._apiService
+      .getSelectedItemDetails(this.mediaType, this.receivedDetails['id'])
       .subscribe((data: any) => {
         this.itemDetails = data;
       });
 
-    this._apiservice
-      .getSelectedItemTrailer(this.mediaType, this.recievedDetails['id'])
+    this._apiService
+      .getSelectedItemTrailer(this.mediaType, this.receivedDetails['id'])
       .subscribe((data) => {
         this.selectedMovieVideoLinks = data;
         this.selectedMovieVideo = this.selectedMovieVideoLinks.results;
@@ -61,5 +65,9 @@ export class SelectedMovieDetailsComponent implements OnInit {
         );
         this.isLoaded = true;
       });
+  }
+
+  goBack() {
+    this.location.back();
   }
 }
