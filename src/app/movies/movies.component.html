@@ -12,7 +12,10 @@
       <a
         *ngFor="let upcoming of resultUpcoming"
         [routerLink]="['/selected-movie']"
-        [queryParams]="{ id: upcoming.id, type: 'upcoming' }"
+        [queryParams]="{
+          id: upcoming.id,
+          media_type: upcoming.media_type || 'movie'
+        }"
         ngxSlickItem
         class="each-movie"
         [class.d-none]="upcoming?.backdrop_path"
@@ -80,7 +83,7 @@
       <a
         *ngFor="let show of resultTVShows; let i = index"
         [routerLink]="['/selected-movie']"
-        [queryParams]="{ id: show.id }"
+        [queryParams]="{ id: show.id, media_type: show.media_type || 'tv' }"
         ngxSlickItem
         class="each-movie"
         [class.d-none]="show?.backdrop_path"
@@ -148,7 +151,10 @@
       <a
         *ngFor="let trending of resultMovies; let i = index"
         [routerLink]="['/selected-movie']"
-        [queryParams]="{ id: trending.id, type: 'trending' }"
+        [queryParams]="{
+          id: trending.id,
+          media_type: trending.media_type || 'tv'
+        }"
         ngxSlickItem
         class="each-movie"
         m
@@ -191,13 +197,8 @@
               </svg>
               <p>{{ trending.vote_average | number : "1.0-1" }}</p>
             </span>
-
             <p class="title">
-              <<<<<<< HEAD
               {{ trending.title || trending.original_name }}
-              =======
-              {{ trending.original_title || trending.original_name }}
-              >>>>>>> 497d811c147cdedd89298a1d0d02dda881d2d569
             </p>
           </figcaption>
         </figure>

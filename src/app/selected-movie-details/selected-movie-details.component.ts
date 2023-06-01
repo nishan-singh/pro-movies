@@ -1,5 +1,4 @@
 import { Component, Injectable, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { FetchDataService } from '../services/fetch-data.service';
 import { ThemePalette } from '@angular/material/core';
@@ -27,22 +26,23 @@ export class SelectedMovieDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private _apiService: FetchDataService,
-    private location: Location
+    private _apiService: FetchDataService
   ) {
     this.route.queryParams.subscribe((params) => {
       this.receivedDetails = params;
-      console.log(this.receivedDetails);
     });
   }
 
   ngOnInit() {
     this.getSelectedMovieDetails();
+    const scrollPosition = sessionStorage.getItem('scrollPosition');
+    if (scrollPosition) {
+      window.scrollTo(0, +scrollPosition);
+    }
   }
 
   checkMediaType() {
-    this.mediaType = this.receivedDetails['mediaType'] || 'movie';
-    console.log(this.mediaType);
+    this.mediaType = this.receivedDetails['media_type'] || 'movie';
   }
 
   getSelectedMovieDetails() {
@@ -65,9 +65,5 @@ export class SelectedMovieDetailsComponent implements OnInit {
         );
         this.isLoaded = true;
       });
-  }
-
-  goBack() {
-    this.location.back();
   }
 }

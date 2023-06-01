@@ -39,6 +39,7 @@ a {
 .search-wrapper {
   height: 60%;
   display: flex;
+  flex-basis: 50%;
   input,
   button {
     padding: 0 12px;
@@ -69,20 +70,6 @@ a {
   }
 }
 
-.user-wrapper {
-  height: 100%;
-  position: relative;
-  button {
-    background: transparent;
-    border: 2px solid var(--primary-color);
-    cursor: pointer;
-    border-radius: 50%;
-  }
-}
-
-.hide-user-logo {
-  z-index: -3;
-}
 
 .help-btn {
   margin-right: 24px;

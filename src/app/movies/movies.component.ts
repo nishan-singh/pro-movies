@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy } from '@angular/core';
 import { FetchDataService } from '../services/fetch-data.service';
+import { ScrollServiceService } from '../services/scroll-service.service';
 
 @Component({
   selector: 'app-movies',
@@ -14,6 +15,8 @@ export class MoviesComponent {
   resultTVShows: any;
   resultUpcoming: any;
   moviesPoster: string = 'https://image.tmdb.org/t/p/w500';
+
+  private scrollPosition: number = 0;
 
   slideConfig = {
     slidesToShow: 5.5,
@@ -51,7 +54,10 @@ export class MoviesComponent {
     ],
   };
 
-  constructor(private _apiService: FetchDataService) {}
+  constructor(
+    private _apiService: FetchDataService,
+    private scrollService: ScrollServiceService
+  ) {}
 
   ngOnInit() {
     this._apiService.getUpcoming(1).subscribe((res) => {
@@ -67,4 +73,18 @@ export class MoviesComponent {
       this.resultMovies = this.receivedMovies.results;
     });
   }
+
+  // ngAfterViewInit() {
+  //   this.scrollPosition = this.scrollService.getScrollPosition(
+  //     window.location.pathname
+  //   );
+  //   window.scrollTo(0, this.scrollPosition);
+  // }
+
+  // ngOnDestroy() {
+  //   this.scrollService.setScrollPosition(
+  //     window.location.pathname,
+  //     window.pageYOffset
+  //   );
+  // }
 }

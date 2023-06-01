@@ -7,7 +7,7 @@
   position: relative;
   height: 65vh;
   width: 80%;
-  cursor: pointer;
+  isolation: isolate;
   .movie-link {
     display: block;
     width: 100%;
@@ -72,7 +72,7 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 5;
+    z-index: 1;
   }
   .next-btn {
     right: 0;
