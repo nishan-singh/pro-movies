@@ -146,11 +146,7 @@
       nextArrow="<button class='my-custom-next-button'></button>"
     >
       <a
-<<<<<<< HEAD
         *ngFor="let trending of resultMovies; let i = index"
-=======
-        *ngFor="let trending of resultmovies; let i = index"
->>>>>>> 497d811c147cdedd89298a1d0d02dda881d2d569
         [routerLink]="['/selected-movie']"
         [queryParams]="{ id: trending.id, type: 'trending' }"
         ngxSlickItem
@@ -197,11 +193,11 @@
             </span>
 
             <p class="title">
-<<<<<<< HEAD
+              <<<<<<< HEAD
               {{ trending.title || trending.original_name }}
-=======
+              =======
               {{ trending.original_title || trending.original_name }}
->>>>>>> 497d811c147cdedd89298a1d0d02dda881d2d569
+              >>>>>>> 497d811c147cdedd89298a1d0d02dda881d2d569
             </p>
           </figcaption>
         </figure>
