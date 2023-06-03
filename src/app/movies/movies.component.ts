@@ -11,9 +11,11 @@ export class MoviesComponent {
   receivedMovies: any;
   receivedTVShows: any;
   receivedUpcoming: any;
+  receivedRatedMovies: any;
   resultMovies: any;
   resultTVShows: any;
   resultUpcoming: any;
+  resultRatedMovies: any;
   moviesPoster: string = 'https://image.tmdb.org/t/p/w500';
 
   private scrollPosition: number = 0;
@@ -72,19 +74,9 @@ export class MoviesComponent {
       this.receivedMovies = res;
       this.resultMovies = this.receivedMovies.results;
     });
+    this._apiService.getRatedMovies().subscribe((res) => {
+      this.receivedRatedMovies = res;
+      this.resultRatedMovies = this.receivedRatedMovies.results;
+    });
   }
-
-  // ngAfterViewInit() {
-  //   this.scrollPosition = this.scrollService.getScrollPosition(
-  //     window.location.pathname
-  //   );
-  //   window.scrollTo(0, this.scrollPosition);
-  // }
-
-  // ngOnDestroy() {
-  //   this.scrollService.setScrollPosition(
-  //     window.location.pathname,
-  //     window.pageYOffset
-  //   );
-  // }
 }

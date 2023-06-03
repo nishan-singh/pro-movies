@@ -18,6 +18,9 @@ import { MoviesSliderComponent } from './movies-slider/movies-slider.component';
 import { SelectedMovieDetailsComponent } from './selected-movie-details/selected-movie-details.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { NavSidebarComponent } from './nav-sidebar/nav-sidebar.component';
+import { FooterComponent } from './footer/footer.component';
+import { ImprintComponent } from './imprint/imprint.component';
+import { SeriesComponent } from './series/series.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,9 @@ import { NavSidebarComponent } from './nav-sidebar/nav-sidebar.component';
     SelectedMovieDetailsComponent,
     SearchResultsComponent,
     NavSidebarComponent,
+    FooterComponent,
+    ImprintComponent,
+    SeriesComponent,
   ],
   imports: [
     BrowserModule,

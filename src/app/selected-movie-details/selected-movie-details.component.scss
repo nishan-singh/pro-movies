@@ -55,6 +55,13 @@ svg {
   height: 100%;
 }
 
+.recommendations {
+  margin-block-start: 32px;
+  .inner-wrapper {
+    width: 85%;
+  }
+}
+
 @media (max-width: 650px) {
   .video-container {
     padding-top: 52.25%;

@@ -1,53 +1,104 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FetchDataService {
-  API_KEY = `api_key=978c12f041e8c2e186d9bec80f97f6a1`;
   BASE_URL = `https://api.themoviedb.org/3`;
+  movies: any;
+
+  headersToSend = new HttpHeaders({
+    accept: 'application/json',
+    Authorization:
+      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NzhjMTJmMDQxZThjMmUxODZkOWJlYzgwZjk3ZjZhMSIsInN1YiI6IjYzZTY0MTA3ZjQ4YjM0MDBhMDg5NDQ5NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FJxAjPVoUl5Rg6x105OG7v7pYaCGgdaONs6gi0DDNiA',
+  });
   constructor(private _http: HttpClient) {}
 
   getMovies(i: number) {
     return this._http.get(
-      `${this.BASE_URL}/discover/movie?${this.API_KEY}&language=en-US&sort_by=popularity.desc&include_video_language&page=${i}`
+      `${this.BASE_URL}/discover/movie?&language=en-US&sort_by=popularity.desc&include_video_language&page=${i}`,
+      {
+        headers: this.headersToSend,
+      }
     );
   }
 
   getTvShows(i: number) {
     return this._http.get(
-      `${this.BASE_URL}/tv/top_rated?${this.API_KEY}&language=en-US&sort_by=popularity.desc&include_video_language&page=${i}`
+      `${this.BASE_URL}/tv/top_rated?&language=en-US&sort_by=popularity.desc&include_video_language&page=${i}`,
+      {
+        headers: this.headersToSend,
+      }
     );
   }
 
   getTrending(i: number) {
     return this._http.get(
-      `${this.BASE_URL}/trending/all/day?${this.API_KEY}&language=en-US&page=${i}`
+      `${this.BASE_URL}/movie/now_playing?&language=en-US&page=${i}`,
+      {
+        headers: this.headersToSend,
+      }
     );
   }
 
   getUpcoming(i: number) {
     return this._http.get(
-      `${this.BASE_URL}/movie/upcoming?${this.API_KEY}&language=en-US&page=${i}`
+      `${this.BASE_URL}/movie/upcoming?&language=en-US&page=${i}`,
+      {
+        headers: this.headersToSend,
+      }
     );
   }
 
   getSearchResults(name: string, i: number) {
     return this._http.get(
-      `${this.BASE_URL}/search/multi?${this.API_KEY}&language=en-US&query=${name}&page=${i}`
+      `${this.BASE_URL}/search/multi?&language=en-US&query=${name}&page=${i}`,
+      {
+        headers: this.headersToSend,
+      }
     );
   }
 
   getSelectedItemDetails(type: string, id: number) {
-    return this._http.get(
-      `${this.BASE_URL}/${type}/${id}?${this.API_KEY}&language=en-US`
-    );
+    return this._http.get(`${this.BASE_URL}/${type}/${id}?&language=en-US`, {
+      headers: this.headersToSend,
+    });
   }
 
   getSelectedItemTrailer(type: string, id: number) {
     return this._http.get(
-      `${this.BASE_URL}/${type}/${id}/videos?${this.API_KEY}&language=en-US`
+      `${this.BASE_URL}/${type}/${id}/videos?&language=en-US`,
+      {
+        headers: this.headersToSend,
+      }
+    );
+  }
+
+  getTrendingTV() {
+    return this._http.get(`${this.BASE_URL}/trending/tv/week?&language=en-US`, {
+      headers: this.headersToSend,
+    });
+  }
+
+  getRatedTV() {
+    return this._http.get(`${this.BASE_URL}/tv/rated?&language=en-US`, {
+      headers: this.headersToSend,
+    });
+  }
+
+  getRatedMovies() {
+    return this._http.get(`${this.BASE_URL}/movie/top_rated?&language=en-US`, {
+      headers: this.headersToSend,
+    });
+  }
+
+  getRecommendations(mediaType: string, id: number) {
+    return this._http.get(
+      `${this.BASE_URL}/${mediaType}/${id}/recommendations?&language=en-US`,
+      {
+        headers: this.headersToSend,
+      }
     );
   }
 }

@@ -70,7 +70,6 @@ a {
   }
 }
 
-
 .help-btn {
   margin-right: 24px;
 }
@@ -257,6 +256,7 @@ a {
     padding-inline: 1em;
   }
   .search-wrapper {
+    justify-content: flex-end;
     button {
       background-color: transparent;
       svg {

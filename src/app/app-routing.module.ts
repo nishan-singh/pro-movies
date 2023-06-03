@@ -4,6 +4,7 @@ import { MoviesComponent } from './movies/movies.component';
 import { SelectedMovieDetailsComponent } from './selected-movie-details/selected-movie-details.component';
 import { AppComponent } from './app.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
+import { ImprintComponent } from './imprint/imprint.component';
 
 const routes: Routes = [
   {
@@ -18,11 +19,19 @@ const routes: Routes = [
     path: 'search-results',
     component: SearchResultsComponent,
   },
+  {
+    path: 'imprint',
+    component: ImprintComponent,
+  },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' }),
+    RouterModule.forRoot(routes, {
+      onSameUrlNavigation: 'reload',
+      scrollPositionRestoration: 'top',
+      useHash: true,
+    }),
   ],
   exports: [RouterModule],
 })

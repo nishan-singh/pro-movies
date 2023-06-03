@@ -139,7 +139,7 @@
 
 <section class="rendered-movies">
   <div class="inner-wrapper">
-    <h2>Trending</h2>
+    <h2>Now Playing</h2>
     <ngx-slick-carousel
       class="carousel"
       [config]="slideConfig"
@@ -153,7 +153,7 @@
         [routerLink]="['/selected-movie']"
         [queryParams]="{
           id: trending.id,
-          media_type: trending.media_type || 'tv'
+          media_type: trending.media_type || 'movie'
         }"
         ngxSlickItem
         class="each-movie"
@@ -206,3 +206,75 @@
     </ngx-slick-carousel>
   </div>
 </section>
+
+<section class="rendered-movies">
+  <div class="inner-wrapper">
+    <h2>Rated Movies</h2>
+    <ngx-slick-carousel
+      class="carousel"
+      [config]="slideConfig"
+      #slickModal="slick-carousel"
+      style="width: 100%"
+      prevArrow="<button class='my-custom-prev-button'></button>"
+      nextArrow="<button class='my-custom-next-button'></button>"
+    >
+      <a
+        *ngFor="let ratedMovies of resultRatedMovies; let i = index"
+        [routerLink]="['/selected-movie']"
+        [queryParams]="{
+          id: ratedMovies.id,
+          media_type: ratedMovies.media_type || 'movie'
+        }"
+        ngxSlickItem
+        class="each-movie"
+        m
+      >
+        <figure class="each-movie-figure">
+          <img
+            [src]="moviesPoster + ratedMovies?.poster_path"
+            [alt]="ratedMovies.title + ' Poster'"
+            class="movie-poster"
+            width="100%"
+            min-height="250px"
+          />
+          <figcaption>
+            <span class="rating">
+              <svg
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+                xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:ns1="http://sozi.baierouge.fr"
+                xmlns:cc="http://creativecommons.org/ns#"
+                xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+                xmlns:dc="http://purl.org/dc/elements/1.1/"
+                id="svg2"
+                xml:space="preserve"
+                viewBox="0 0 45.05 41.35"
+                version="1.1"
+                inkscape:version="0.91 r13725"
+              >
+                <g id="g10" transform="matrix(1.25 0 0 -1.25 0 41.35)">
+                  <g id="g12">
+                    <path
+                      id="path14"
+                      style="fill-rule: evenodd; fill: #ffe94b"
+                      d="m36.039 20.799-7.437-8.438 2-11.961-11.481 7.481-12.281-7.883 2.32 12.844-9.16 6.316 12.52 1.961 4.882 11.961 6.879-10.762 11.758-1.519z"
+                      inkscape:connector-curvature="0"
+                    />
+                  </g>
+                </g>
+              </svg>
+              <p>{{ ratedMovies.vote_average | number : "1.0-1" }}</p>
+            </span>
+            <p class="title">
+              {{ ratedMovies.title || ratedMovies.original_name }}
+            </p>
+          </figcaption>
+        </figure>
+      </a>
+    </ngx-slick-carousel>
+  </div>
+</section>
+
+<app-footer></app-footer>

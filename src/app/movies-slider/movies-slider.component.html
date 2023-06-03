@@ -11,7 +11,7 @@
     <a
       *ngFor="let movie of resultTrendingMovies"
       [routerLink]="['/selected-movie']"
-      [queryParams]="{ id: movie.id, media_type: movie.media_type || 'tv' }"
+      [queryParams]="{ id: movie.id, media_type: movie.media_type || 'movie' }"
       ngxSlickItem
       style="width: 85vw !important"
     >

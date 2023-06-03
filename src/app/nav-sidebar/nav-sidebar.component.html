@@ -39,8 +39,8 @@
         class="search-input"
         #search
         [(ngModel)]="searchInput"
-        minlength="3"
-        (keyup.enter)="searchInput.length >= 3 && searchMovie()"
+        minlength="1"
+        (keyup.enter)="searchInput.length >= 1 && searchMovie()"
       />
       <!-- #searchTerm -->
       <button

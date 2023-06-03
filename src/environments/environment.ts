@@ -6,4 +6,5 @@ export const environment = {
     apiKey: 'AIzaSyAg8NVuP-2qPOdtLT36RgMQGqS5qAiuoIM',
     authDomain: 'nsctodolist.firebaseapp.com',
     messagingSenderId: '817495591467',
-  },};
+  },
+};
