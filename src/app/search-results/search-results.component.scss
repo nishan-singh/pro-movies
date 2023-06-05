@@ -37,7 +37,11 @@
           background-color: $primary-color;
           padding: 6px 10px 6px 4px;
           border-radius: 4px;
-          display: inline-block;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 4px;
+          width: fit-content;
           .mat-icon {
             vertical-align: bottom;
           }

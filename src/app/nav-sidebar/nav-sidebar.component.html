@@ -93,7 +93,7 @@
 <!-- Sidebar -->
 <mat-sidenav-container
   class="sidebar-container z-index-0"
-  (backdropClick)="close('backdrop')"
+  (backdropClick)="close()"
   [class.z-index-0]="!hideNavbar"
   [ngStyle]="{ position: sidenav.opened ? 'fixed' : 'relative' }"
 >
@@ -101,25 +101,19 @@
     fixedInViewport="true"
     class="sidebar-drawer"
     #sidenav
-    (keydown.escape)="close('escape')"
-    disableClose
+    (keydown.escape)="close()"
     fixedInViewport="true"
   >
     <mat-sidenav-content>
       <p>
-        <button (click)="close('toggle button')" class="sidebar-close-btn">
+        <button (click)="close()" class="sidebar-close-btn">
           <svg
-            version="1.1"
-            id="Layer_1"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
             x="0px"
             y="0px"
             width="122.878px"
             height="122.88px"
             viewBox="0 0 122.878 122.88"
             enable-background="new 0 0 122.878 122.88"
-            xml:space="preserve"
           >
             <g>
               <path
@@ -131,12 +125,8 @@
       </p>
       <ul class="sidebar-links">
         <li>
-          <a routerLink="">
+          <a routerLink="/" fragment="upcoming" (click)="close()">
             <svg
-              xmlns="http://www.w3.org/2000/svg"
-              shape-rendering="geometricPrecision"
-              text-rendering="geometricPrecision"
-              image-rendering="optimizeQuality"
               fill-rule="evenodd"
               clip-rule="evenodd"
               viewBox="0 0 485 512.03"
@@ -163,43 +153,13 @@
           >
         </li>
         <li>
-          <a routerLink="">
-            <svg
-              version="1.1"
-              id="Layer_1"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              x="0px"
-              y="0px"
-              viewBox="0 0 120.71 122.88"
-              style="enable-background: new 0 0 120.71 122.88"
-              xml:space="preserve"
-            >
-              <style type="text/css">
-                .st0 {
-                  fill-rule: evenodd;
-                  clip-rule: evenodd;
-                }
-              </style>
-              <g>
-                <path
-                  class="st0"
-                  d="M59.97,0c33.11,0,59.96,26.85,59.96,59.97c0,16.04-6.3,30.62-16.57,41.38c3.34,9.99,4.44,6.97,17.36,8.88v12.5 c-19.28,0.78-15.44-1.14-27.55-12.83c-9.51,6.34-20.92,10.03-33.2,10.03C26.85,119.93,0,93.08,0,59.97C0,26.85,26.86,0,59.97,0 L59.97,0z M27.63,44.25c8.91,0,16.14,7.22,16.14,16.14c0,8.91-7.22,16.13-16.14,16.13c-8.91,0-16.13-7.22-16.13-16.13 C11.5,51.47,18.72,44.25,27.63,44.25L27.63,44.25z M93.08,44.25c8.91,0,16.14,7.22,16.14,16.14c0,8.91-7.22,16.13-16.14,16.13 c-8.91,0-16.13-7.22-16.13-16.13C76.95,51.47,84.17,44.25,93.08,44.25L93.08,44.25z M60.83,10.86c8.91,0,16.13,7.22,16.13,16.14 c0,8.91-7.22,16.13-16.13,16.13c-8.91,0-16.14-7.22-16.14-16.13C44.69,18.09,51.92,10.86,60.83,10.86L60.83,10.86L60.83,10.86z M60.26,51.71c4.58,0,8.3,3.72,8.3,8.3c0,4.58-3.72,8.3-8.3,8.3c-4.58,0-8.3-3.72-8.3-8.3C51.96,55.42,55.68,51.71,60.26,51.71 L60.26,51.71L60.26,51.71z M60.83,78.38c8.91,0,16.13,7.22,16.13,16.14c0,8.91-7.22,16.13-16.13,16.13 c-8.91,0-16.14-7.22-16.14-16.13C44.69,85.61,51.92,78.38,60.83,78.38L60.83,78.38L60.83,78.38z"
-                />
-              </g>
-            </svg>
-            Series</a
-          >
-        </li>
-        <li>
-          <a routerLink="">
+          <a routerLink="" fragment="now-playing" (click)="close()">
             <svg
               id="Layer_1"
               data-name="Layer 1"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 91.16 122.88"
             >
-              <title>flames</title>
               <path
                 class="cls-1"
                 d="M14.45,35.35c1.82,14.45,4.65,25.4,9.44,29.45C24.48,30.87,43,27.4,38.18,0,53.52,3,67.77,33.33,71.36,66.15a37.5,37.5,0,0,0,6.53-19.46c13.76,15.72,21.31,56.82-.17,69.52-12.53,7.41-38.13,7.79-51.46,5.27a27.64,27.64,0,0,1-13.5-5.36c-19.2-14.66-15.17-62.25,1.69-80.77Z"
@@ -213,11 +173,11 @@
                 d="M65.81,120.73a115,115,0,0,1-39.55.82l-1-.13c.06-5.73,2.21-12,5.47-15.73a17.18,17.18,0,0,0,2.93,8.84c1.61-14.91,8-26.63,14.88-28-1.79,12.32,6.65,15.61,6.4,27.37,2.15-1.84,3.42-6.82,4.23-13.38,4.47,5,7.09,12.84,6.63,20.19Z"
               />
             </svg>
-            Trending</a
+            Now Playing</a
           >
         </li>
         <li>
-          <a routerLink="">
+          <a routerLink="" fragment="tv-shows" (click)="close()">
             <svg
               version="1.1"
               id="Layer_1"
@@ -227,7 +187,6 @@
               y="0px"
               viewBox="0 0 122.88 122.88"
               style="enable-background: new 0 0 122.88 122.88"
-              xml:space="preserve"
             >
               <g>
                 <path

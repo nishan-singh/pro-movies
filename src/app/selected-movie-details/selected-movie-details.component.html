@@ -20,21 +20,7 @@
     <section class="video-infos" *ngIf="isLoaded">
       <h2>{{ itemDetails?.title || itemDetails?.name }}</h2>
       <span>
-        <svg
-          xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-          xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:ns1="http://sozi.baierouge.fr"
-          xmlns:cc="http://creativecommons.org/ns#"
-          xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-          xmlns:dc="http://purl.org/dc/elements/1.1/"
-          id="svg2"
-          xml:space="preserve"
-          viewBox="0 0 45.05 41.35"
-          version="1.1"
-          inkscape:version="0.91 r13725"
-        >
+        <svg viewBox="0 0 45.05 41.35" version="1.1">
           <g id="g10" transform="matrix(1.25 0 0 -1.25 0 41.35)">
             <g id="g12">
               <path
@@ -86,19 +72,10 @@
           <figcaption>
             <span class="rating">
               <svg
-                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-                xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                xmlns:ns1="http://sozi.baierouge.fr"
-                xmlns:cc="http://creativecommons.org/ns#"
-                xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-                xmlns:dc="http://purl.org/dc/elements/1.1/"
                 id="svg2"
                 xml:space="preserve"
                 viewBox="0 0 45.05 41.35"
                 version="1.1"
-                inkscape:version="0.91 r13725"
               >
                 <g id="g10" transform="matrix(1.25 0 0 -1.25 0 41.35)">
                   <g id="g12">
@@ -120,5 +97,8 @@
         </figure>
       </a>
     </ngx-slick-carousel>
+    <p *ngIf="recommendedResult.length < 1" class="not-found">
+      Oops! No recommendations found.
+    </p>
   </div>
 </section>

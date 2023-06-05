@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 export class NavSidebarComponent {
   showSearch: boolean = false;
   hideNavbar: boolean = false;
-  reason = '';
   searchInput: string = '';
   @ViewChild('sidenav') sidenav: MatSidenav;
   @ViewChild('search', { static: false }) search: ElementRef;
@@ -22,14 +21,12 @@ export class NavSidebarComponent {
     return window.innerWidth < 650;
   }
 
-  close(reason: string) {
-    this.reason = reason;
+  close() {
     this.sidenav.close();
     this.hideNavbar = false;
   }
 
   searchMovie() {
-    console.log('clicked');
     if (this.onResize(window)) {
       this.showSearch = true;
       setTimeout(() => {

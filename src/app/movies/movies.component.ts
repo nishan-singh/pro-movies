@@ -1,6 +1,5 @@
-import { Component, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { FetchDataService } from '../services/fetch-data.service';
-import { ScrollServiceService } from '../services/scroll-service.service';
 
 @Component({
   selector: 'app-movies',
@@ -18,8 +17,6 @@ export class MoviesComponent {
   resultRatedMovies: any;
   moviesPoster: string = 'https://image.tmdb.org/t/p/w500';
 
-  private scrollPosition: number = 0;
-
   slideConfig = {
     slidesToShow: 5.5,
     slidesToScroll: 3,
@@ -35,14 +32,14 @@ export class MoviesComponent {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 4.5,
           slidesToScroll: 3,
         },
       },
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 3.5,
           slidesToScroll: 2,
         },
       },
@@ -56,10 +53,7 @@ export class MoviesComponent {
     ],
   };
 
-  constructor(
-    private _apiService: FetchDataService,
-    private scrollService: ScrollServiceService
-  ) {}
+  constructor(private _apiService: FetchDataService) {}
 
   ngOnInit() {
     this._apiService.getUpcoming(1).subscribe((res) => {

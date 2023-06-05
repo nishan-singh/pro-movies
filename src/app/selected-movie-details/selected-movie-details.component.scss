@@ -9,6 +9,7 @@ svg {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-block-start: 24px;
   .inner-container {
     background-color: $secondary-color;
     width: 85%;
@@ -60,6 +61,10 @@ svg {
   .inner-wrapper {
     width: 85%;
   }
+}
+
+.not-found {
+  font-size: 1.25rem;
 }
 
 @media (max-width: 650px) {
