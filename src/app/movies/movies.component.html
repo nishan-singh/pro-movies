@@ -1,4 +1,4 @@
-<main role="main" id="main">
+<main>
   <app-movies-slider></app-movies-slider>
   <section class="rendered-movies upcoming" id="upcoming">
     <div class="inner-wrapper">
@@ -22,11 +22,11 @@
         >
           <figure class="each-upcoming-figure">
             <img
-              [src]="moviesPoster + upcoming?.poster_path"
+              [ngSrc]="moviesPoster + upcoming?.poster_path"
               [alt]="upcoming.title + ' Poster'"
               class="tv-shows-poster"
-              width="100%"
-              min-height="250px"
+              width="100"
+              height="250"
             />
             <figcaption>
               <span class="rating">
@@ -75,11 +75,11 @@
         >
           <figure class="each-tvshow-figure">
             <img
-              [src]="moviesPoster + show?.poster_path"
+              [ngSrc]="moviesPoster + show?.poster_path"
               [alt]="show.title + ' Poster'"
               class="tv-shows-poster"
-              width="100%"
-              min-height="250px"
+              width="100"
+              height="250"
             />
             <figcaption>
               <span class="rating">
@@ -130,11 +130,11 @@
         >
           <figure class="each-movie-figure">
             <img
-              [src]="moviesPoster + trending?.poster_path"
+              [ngSrc]="moviesPoster + trending?.poster_path"
               [alt]="trending.title + ' Poster'"
               class="movie-poster"
-              width="100%"
-              min-height="250px"
+              width="100"
+              height="250"
             />
             <figcaption>
               <span class="rating">
@@ -185,11 +185,11 @@
         >
           <figure class="each-movie-figure">
             <img
-              [src]="moviesPoster + ratedMovies?.poster_path"
+              [ngSrc]="moviesPoster + ratedMovies?.poster_path"
               [alt]="ratedMovies.title + ' Poster'"
               class="movie-poster"
-              width="100%"
-              min-height="250px"
+              width="100"
+              height="250"
             />
             <figcaption>
               <span class="rating">
@@ -216,5 +216,4 @@
     </div>
   </section>
 </main>
-
-<app-footer> </app-footer>
+<app-footer></app-footer>

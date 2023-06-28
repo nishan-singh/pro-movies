@@ -53,6 +53,11 @@ button {
 main {
   margin-block-start: 16px;
 }
+
+app-footer {
+  margin-top: auto;
+}
+
 .slick-list,
 .slick-track {
   height: 100%;
@@ -93,7 +98,7 @@ main {
   position: relative;
   margin-inline-end: 1em;
   background-color: $secondary-color;
-  border-radius: 0 0 6px 6px;
+  border-radius: 6px;
   padding-block-end: 24px;
   .d-none {
     display: none;
@@ -103,6 +108,7 @@ main {
     width: 100%;
   }
   img {
+    border-radius: 6px 6px 0 0;
     object-position: center;
     margin-block-end: 24px;
     height: 300px;
@@ -141,6 +147,13 @@ main {
         background-color: $text-accent-color;
       }
     }
+  }
+}
+
+@media (min-width: 2450px) {
+  main {
+    max-width: 2450px;
+    margin-inline: auto;
   }
 }
 

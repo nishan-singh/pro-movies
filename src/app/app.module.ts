@@ -21,6 +21,7 @@ import { NavSidebarComponent } from './nav-sidebar/nav-sidebar.component';
 import { FooterComponent } from './footer/footer.component';
 import { ImprintComponent } from './imprint/imprint.component';
 import { SeriesComponent } from './series/series.component';
+import { NgOptimizedImage } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { SeriesComponent } from './series/series.component';
     FormsModule,
     MatProgressSpinnerModule,
     MatCardModule,
+    NgOptimizedImage,
   ],
   providers: [],
   bootstrap: [AppComponent],
