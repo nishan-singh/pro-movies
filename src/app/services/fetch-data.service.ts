@@ -13,6 +13,7 @@ export class FetchDataService {
     Authorization:
       'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NzhjMTJmMDQxZThjMmUxODZkOWJlYzgwZjk3ZjZhMSIsInN1YiI6IjYzZTY0MTA3ZjQ4YjM0MDBhMDg5NDQ5NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FJxAjPVoUl5Rg6x105OG7v7pYaCGgdaONs6gi0DDNiA',
   });
+
   constructor(private _http: HttpClient) {}
 
   getMovies(i: number) {

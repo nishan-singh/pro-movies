@@ -10,7 +10,7 @@
         style="width: 100%"
       >
         <a
-          *ngFor="let upcoming of resultUpcoming"
+          *ngFor="let upcoming of upcoming$ | async"
           [routerLink]="['/selected-movie']"
           [queryParams]="{
             id: upcoming.id,
@@ -22,11 +22,9 @@
         >
           <figure class="each-upcoming-figure">
             <img
-              [ngSrc]="moviesPoster + upcoming?.poster_path"
+              [src]="moviesPoster + upcoming?.poster_path"
               [alt]="upcoming.title + ' Poster'"
               class="tv-shows-poster"
-              width="100"
-              height="250"
             />
             <figcaption>
               <span class="rating">
@@ -66,17 +64,20 @@
         nextArrow="<button class='my-custom-next-button'></button>"
       >
         <a
-          *ngFor="let show of resultTVShows; let i = index"
+          *ngFor="let eachShow of TVShows$ | async"
           [routerLink]="['/selected-movie']"
-          [queryParams]="{ id: show.id, media_type: show.media_type || 'tv' }"
+          [queryParams]="{
+            id: eachShow.id,
+            media_type: eachShow.media_type || 'tv'
+          }"
           ngxSlickItem
           class="each-movie"
-          [class.d-none]="show?.backdrop_path"
+          [class.d-none]="eachShow?.backdrop_path"
         >
-          <figure class="each-tvshow-figure">
+          <figure class="each-tveachShow-figure">
             <img
-              [ngSrc]="moviesPoster + show?.poster_path"
-              [alt]="show.title + ' Poster'"
+              [src]="moviesPoster + eachShow?.poster_path"
+              [alt]="eachShow.title + ' Poster'"
               class="tv-shows-poster"
               width="100"
               height="250"
@@ -93,11 +94,11 @@
                     </g>
                   </g>
                 </svg>
-                <p>{{ show.vote_average | number : "1.0-1" }}</p>
+                <p>{{ eachShow.vote_average | number : "1.0-1" }}</p>
               </span>
 
               <p class="title">
-                {{ show.title || show.name }}
+                {{ eachShow.title || eachShow.name }}
               </p>
             </figcaption>
           </figure>
@@ -118,7 +119,7 @@
         nextArrow="<button class='my-custom-next-button'></button>"
       >
         <a
-          *ngFor="let trending of resultMovies; let i = index"
+          *ngFor="let trending of trendingList$ | async"
           [routerLink]="['/selected-movie']"
           [queryParams]="{
             id: trending.id,
@@ -130,7 +131,7 @@
         >
           <figure class="each-movie-figure">
             <img
-              [ngSrc]="moviesPoster + trending?.poster_path"
+              [src]="moviesPoster + trending?.poster_path"
               [alt]="trending.title + ' Poster'"
               class="movie-poster"
               width="100"
@@ -173,11 +174,11 @@
         nextArrow="<button class='my-custom-next-button'></button>"
       >
         <a
-          *ngFor="let ratedMovies of resultRatedMovies; let i = index"
+          *ngFor="let ratedMovie of ratedMovies$ | async"
           [routerLink]="['/selected-movie']"
           [queryParams]="{
-            id: ratedMovies.id,
-            media_type: ratedMovies.media_type || 'movie'
+            id: ratedMovie.id,
+            media_type: ratedMovie.media_type || 'movie'
           }"
           ngxSlickItem
           class="each-movie"
@@ -185,8 +186,8 @@
         >
           <figure class="each-movie-figure">
             <img
-              [ngSrc]="moviesPoster + ratedMovies?.poster_path"
-              [alt]="ratedMovies.title + ' Poster'"
+              [src]="moviesPoster + ratedMovie?.poster_path"
+              [alt]="ratedMovie.title + ' Poster'"
               class="movie-poster"
               width="100"
               height="250"
@@ -204,10 +205,10 @@
                     </g>
                   </g>
                 </svg>
-                <p>{{ ratedMovies.vote_average | number : "1.0-1" }}</p>
+                <p>{{ ratedMovie.vote_average | number : "1.0-1" }}</p>
               </span>
               <p class="title">
-                {{ ratedMovies.title || ratedMovies.original_name }}
+                {{ ratedMovie.title || ratedMovie.original_name }}
               </p>
             </figcaption>
           </figure>

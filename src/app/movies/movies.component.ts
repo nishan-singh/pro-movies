@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FetchDataService } from '../services/fetch-data.service';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-movies',
@@ -7,14 +8,12 @@ import { FetchDataService } from '../services/fetch-data.service';
   styleUrls: ['./movies.component.scss'],
 })
 export class MoviesComponent {
-  receivedMovies: any;
-  receivedTVShows: any;
-  receivedUpcoming: any;
-  receivedRatedMovies: any;
-  resultMovies: any;
-  resultTVShows: any;
   resultUpcoming: any;
+  resultTVShows: any;
+  resultMovies: any;
+  resultTrending: any;
   resultRatedMovies: any;
+
   moviesPoster: string = 'https://image.tmdb.org/t/p/w500';
 
   slideConfig = {
@@ -22,6 +21,13 @@ export class MoviesComponent {
     slidesToScroll: 3,
     infinite: false,
     responsive: [
+      {
+        breakpoint: 1500,
+        settings: {
+          slidesToShow: 5.5,
+          slidesToScroll: 3,
+        },
+      },
       {
         breakpoint: 1200,
         settings: {
@@ -53,24 +59,33 @@ export class MoviesComponent {
     ],
   };
 
-  constructor(private _apiService: FetchDataService) {}
+  upcoming$ = this._apiService.getUpcoming(1).pipe(
+    map((res) => {
+      this.resultUpcoming = res;
+      return this.resultUpcoming.results;
+    })
+  );
 
-  ngOnInit() {
-    this._apiService.getUpcoming(1).subscribe((res) => {
-      this.receivedUpcoming = res;
-      this.resultUpcoming = this.receivedUpcoming.results;
-    });
-    this._apiService.getTvShows(1).subscribe((res) => {
-      this.receivedTVShows = res;
-      this.resultTVShows = this.receivedTVShows.results;
-    });
-    this._apiService.getTrending(1).subscribe((res) => {
-      this.receivedMovies = res;
-      this.resultMovies = this.receivedMovies.results;
-    });
-    this._apiService.getRatedMovies().subscribe((res) => {
-      this.receivedRatedMovies = res;
-      this.resultRatedMovies = this.receivedRatedMovies.results;
-    });
-  }
+  TVShows$ = this._apiService.getTvShows(1).pipe(
+    map((res) => {
+      this.resultTVShows = res;
+      return this.resultTVShows.results;
+    })
+  );
+
+  trendingList$ = this._apiService.getTrending(1).pipe(
+    map((res) => {
+      this.resultTrending = res;
+      return this.resultTrending.results;
+    })
+  );
+
+  ratedMovies$ = this._apiService.getRatedMovies().pipe(
+    map((res) => {
+      this.resultRatedMovies = res;
+      return this.resultRatedMovies.results;
+    })
+  );
+
+  constructor(private _apiService: FetchDataService) {}
 }

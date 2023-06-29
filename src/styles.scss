@@ -157,6 +157,15 @@ app-footer {
   }
 }
 
+@media (min-width: 1500px) {
+  .each-movie {
+    margin-inline-end: 1.5em;
+    img {
+      height: 400px;
+    }
+  }
+}
+
 @media (max-width: 650px) {
   .slick-next {
     right: 0 !important;
