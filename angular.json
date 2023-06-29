@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "firebase-todo": {
+    "pro-movies": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/firebase-todo",
+            "outputPath": "dist/pro-movies",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "firebase-todo:build:production"
+              "browserTarget": "pro-movies:build:production"
             },
             "development": {
-              "browserTarget": "firebase-todo:build:development"
+              "browserTarget": "pro-movies:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "firebase-todo:build"
+            "browserTarget": "pro-movies:build"
           }
         },
         "test": {
@@ -105,7 +105,7 @@
           "options": {
             "prerender": false,
             "ssr": false,
-            "browserTarget": "firebase-todo:build:production",
+            "browserTarget": "pro-movies:build:production",
             "firebaseProject": "nsctodolist",
             "firebaseHostingSite": "nsctodolist"
           }
