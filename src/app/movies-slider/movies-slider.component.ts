@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { FetchDataService } from '../services/fetch-data.service';
 import { Router } from '@angular/router';
-import { NgOptimizedImage } from '@angular/common';
 import { SlickCarouselComponent } from 'ngx-slick-carousel';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-movies-slider',
@@ -12,7 +12,6 @@ import { SlickCarouselComponent } from 'ngx-slick-carousel';
 export class MoviesSliderComponent {
   @ViewChild('slickModal') slickModal: SlickCarouselComponent;
   isLoaded: boolean = false;
-  trendingMoviesData: any;
   resultTrendingMovies: any;
 
   moviesPoster: string = 'https://image.tmdb.org/t/p/w1280';
@@ -26,11 +25,14 @@ export class MoviesSliderComponent {
     arrows: false,
   };
 
+  trendingMovies$ = this._apiService.getTrending(1).pipe(
+    map((res) => {
+      this.resultTrendingMovies = res;
+      return this.resultTrendingMovies.results;
+    })
+  );
+
   constructor(private _apiService: FetchDataService, private route: Router) {
-    this._apiService.getTrending(1).subscribe((res) => {
-      this.trendingMoviesData = res;
-      this.resultTrendingMovies = this.trendingMoviesData.results;
-    });
     this.isLoaded = true;
   }
 

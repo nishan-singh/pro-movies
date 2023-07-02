@@ -28,18 +28,10 @@ a {
   z-index: -2;
 }
 
-.nav-logo {
-  background-color: $text-accent-color;
-  color: $primary-color;
-  padding: 4px;
-  margin: 0;
-  border-radius: 10px;
-}
-
 .search-wrapper {
   height: 60%;
   display: flex;
-  flex-basis: 50%;
+  flex-basis: 30%;
   input,
   button {
     padding: 0 12px;

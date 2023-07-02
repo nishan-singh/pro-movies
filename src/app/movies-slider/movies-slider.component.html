@@ -27,7 +27,7 @@
     style="width: 100%; height: 100%"
   >
     <a
-      *ngFor="let movie of resultTrendingMovies"
+      *ngFor="let movie of trendingMovies$ | async"
       [routerLink]="['/selected-movie']"
       [queryParams]="{ id: movie.id, media_type: movie.media_type || 'movie' }"
       ngxSlickItem

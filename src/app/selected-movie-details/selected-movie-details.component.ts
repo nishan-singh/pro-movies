@@ -1,8 +1,8 @@
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FetchDataService } from '../services/fetch-data.service';
-import { ThemePalette } from '@angular/material/core';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
+import { combineLatest, map } from 'rxjs';
 
 @Component({
   selector: 'app-selected-movie-details',
@@ -12,7 +12,7 @@ import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 @Injectable({
   providedIn: 'root',
 })
-export class SelectedMovieDetailsComponent implements OnInit {
+export class SelectedMovieDetailsComponent {
   isLoaded: boolean = false;
   isRecommendedLoaded: boolean = false;
   receivedDetails: any;
@@ -24,7 +24,6 @@ export class SelectedMovieDetailsComponent implements OnInit {
   moviesPoster: string = 'https://image.tmdb.org/t/p/w500';
 
   itemDetails: any;
-  color: ThemePalette = 'primary';
   mode: ProgressSpinnerMode = 'determinate';
 
   navigationSubscription: any;
@@ -65,6 +64,13 @@ export class SelectedMovieDetailsComponent implements OnInit {
     ],
   };
 
+  urlParams = combineLatest([this.route.paramMap]).pipe(
+    map((combined) => {
+      const params = combined;
+      return { params };
+    })
+  );
+
   constructor(
     private route: ActivatedRoute,
     private _apiService: FetchDataService
@@ -73,8 +79,8 @@ export class SelectedMovieDetailsComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       this.receivedDetails = params;
-      this.getSelectedMovieDetails();
       this.getRecommendationMedia();
+      this.getSelectedMovieDetails();
     });
   }
 
