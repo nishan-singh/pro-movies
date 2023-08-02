@@ -1,0 +1,212 @@
+@import "../../variables";
+
+.d-flex {
+  display: flex;
+  align-items: center;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+}
+
+.logo-sidebar-toggle-wrapper {
+  gap: 3.5em;
+  a {
+    border-radius: 8px;
+    font-size: 1.25rem;
+    background-color: $text-accent-color;
+    padding: 8px 6px;
+  }
+}
+
+a {
+  color: white;
+}
+
+.navbar {
+  height: 72px;
+  width: 100%;
+  background-color: $secondary-color;
+  right: 0;
+  justify-content: space-between;
+  z-index: 2;
+  padding-inline: 2em;
+}
+
+.z-index-0 {
+  z-index: 1;
+}
+
+.search-wrapper {
+  justify-content: flex-end;
+  height: 60%;
+  display: flex;
+  flex-basis: 75%;
+  input,
+  button {
+    padding: 0 12px;
+  }
+  input {
+    font-size: 1.25em;
+    border-radius: 8px 0 0 8px;
+  }
+  button {
+    background-color: hsl(0, 0%, 90%);
+    border-radius: 0 8px 8px 0;
+    svg {
+      fill: $secondary-color;
+    }
+  }
+  .close-button {
+    z-index: 1;
+  }
+}
+
+.search-inp-btn-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .search-input {
+    height: 100%;
+    color: $text-secondary-color;
+  }
+}
+
+.log-out-wrapper {
+  position: relative;
+  height: 100%;
+  button {
+    height: 100%;
+  }
+}
+
+.log-out {
+  position: absolute;
+  white-space: nowrap;
+  top: 72px;
+  transform: translateX(100%);
+  padding: 16px 12px;
+  background-color: $secondary-color;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0px 4px 4px rgba($color: #000000, $alpha: 0.25);
+  transition: transform 125ms linear;
+}
+
+.show-logout {
+  transform: translateX(0);
+  right: 0;
+}
+
+.sidebar-drawer {
+  background-color: $secondary-color;
+  width: 232px;
+  .sidebar-links {
+    display: flex;
+    flex-direction: column;
+    gap: 2.55em;
+    font-weight: normal;
+    font-size: 1.25em;
+    margin-inline-start: 2em;
+    margin-block-start: 5em;
+    a {
+      vertical-align: baseline;
+    }
+    a:hover svg {
+      fill: white;
+    }
+  }
+  .sidebar-close-btn {
+    position: absolute;
+    right: 1.5em;
+    top: 2.5em;
+  }
+  svg {
+    width: 1.125em;
+    height: 1.125em;
+    fill: hsl(0, 0%, 73%);
+    margin-inline-end: 0.75em;
+    &:hover {
+      fill: white;
+    }
+  }
+}
+
+@media (min-width: 872px) {
+  .log-out-menu {
+    visibility: hidden;
+    right: 0;
+    li {
+      display: none;
+    }
+  }
+  .log-out-menu li:last-child {
+    display: block;
+    border-radius: 20px 0 20px 20px;
+  }
+}
+
+@media (max-width: 872px) {
+  .navbar {
+    width: 100%;
+  }
+  .sidebar-links-list {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+  }
+  .legal-notice {
+    display: none;
+  }
+  .sidebar-icon {
+    margin-right: 0;
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 650px) {
+  .navbar {
+    padding-inline: 1em;
+  }
+  .search-wrapper {
+    justify-content: flex-end;
+    button {
+      background-color: transparent;
+      svg {
+        fill: $text-primary-color;
+        stroke: $text-primary-color;
+      }
+    }
+  }
+
+  .sidebar-drawer {
+    .sidebar-links {
+      margin-block-start: 4em;
+      gap: 1.5rem;
+    }
+  }
+
+  .search-inp-btn-wrapper {
+    height: 72px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    transform: translateY(-72px);
+    visibility: hidden;
+    transition: transform 125ms linear;
+  }
+
+  .show-input-search {
+    transform: translateY(0);
+    background-color: $secondary-color;
+    border-radius: 0;
+    visibility: visible;
+    .search-input {
+      background-color: $secondary-color;
+      color: $text-primary-color;
+      border-radius: 0;
+      flex: 1;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "targets": {
+    "pro-movies-e4f5d": {
+      "hosting": {
+        "pro-movies": [
+          "pro-movies-e4f5d"
+        ]
+      }
+    },
+    "pro-movies1": {
+      "hosting": {
+        "pro-movies": [
+          "pro-movies1"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "pro-movies1"
+  }
+}

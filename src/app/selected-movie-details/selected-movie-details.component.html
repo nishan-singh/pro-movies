@@ -1,0 +1,186 @@
+<app-nav-sidebar></app-nav-sidebar>
+
+<div *ngIf="isLoaded; else failureMessage">
+  <article class="video-desc-wrapper">
+    <div class="inner-container">
+      <section class="video-container">
+        <iframe
+          [src]="safeUrl || 'videoId'"
+          class="iframe-container"
+          *ngIf="isVideoLoaded"
+          width="100%"
+          height="100%"
+          allowfullscreen
+          frameborder="0"
+        >
+        </iframe>
+        <mat-card
+          class="loading-container"
+          *ngIf="!isVideoLoaded && !selectedItemTrailer"
+        >
+          <mat-spinner style="width: 75px; height: 75px"></mat-spinner>
+          <mat-card-content>
+            <h2 class="example-h2">Loading...</h2>
+          </mat-card-content>
+        </mat-card>
+      </section>
+      <section class="video-infos" *ngIf="isVideoLoaded">
+        <h2>{{ itemDetails?.title || itemDetails?.name }}</h2>
+        <span>
+          <svg viewBox="0 0 45.05 41.35" version="1.1">
+            <g id="g10" transform="matrix(1.25 0 0 -1.25 0 41.35)">
+              <g id="g12">
+                <path
+                  id="path14"
+                  style="fill-rule: evenodd; fill: #ffe94b"
+                  d="m36.039 20.799-7.437-8.438 2-11.961-11.481 7.481-12.281-7.883 2.32 12.844-9.16 6.316 12.52 1.961 4.882 11.961 6.879-10.762 11.758-1.519z"
+                  inkscape:connector-curvature="0"
+                />
+              </g>
+            </g>
+          </svg>
+          <p>{{ itemDetails?.vote_average | number : "1.0-1" }}</p>
+        </span>
+        <p>{{ itemDetails?.overview }}</p>
+      </section>
+    </div>
+  </article>
+
+  <section
+    class="rendered-movies recommendations"
+    *ngIf="!checkIfExist; else upcoming"
+  >
+    <div class="inner-wrapper">
+      <h2>Recommended</h2>
+      <ngx-slick-carousel
+        class="carousel"
+        [config]="slideConfig"
+        #slickModal="slick-carousel"
+        style="width: 100%"
+        prevArrow="<button class='my-custom-prev-button'></button>"
+        nextArrow="<button class='my-custom-next-button'></button>"
+      >
+        <a
+          *ngFor="let recommended of getRecommendedMovies$ | async"
+          [routerLink]="['/user/' + idFromUrl + '/selected-movie']"
+          [queryParams]="{
+            id: recommended.id,
+            media_type: recommended.media_type || 'movie'
+          }"
+          ngxSlickItem
+          class="each-movie"
+          [ngClass]="recommended?.poster_path ? '' : 'd-none'"
+        >
+          <figure class="each-movie-figure">
+            <img
+              *ngIf="recommended?.poster_path"
+              [src]="moviesPoster + recommended?.poster_path"
+              [alt]="recommended.title + ' Poster'"
+              class="movie-poster"
+              width="100%"
+              min-height="250px"
+            />
+            <figcaption>
+              <span class="rating">
+                <svg
+                  id="svg2"
+                  xml:space="preserve"
+                  viewBox="0 0 45.05 41.35"
+                  version="1.1"
+                >
+                  <g id="g10" transform="matrix(1.25 0 0 -1.25 0 41.35)">
+                    <g id="g12">
+                      <path
+                        id="path14"
+                        style="fill-rule: evenodd; fill: #ffe94b"
+                        d="m36.039 20.799-7.437-8.438 2-11.961-11.481 7.481-12.281-7.883 2.32 12.844-9.16 6.316 12.52 1.961 4.882 11.961 6.879-10.762 11.758-1.519z"
+                        inkscape:connector-curvature="0"
+                      />
+                    </g>
+                  </g>
+                </svg>
+                <p>{{ recommended.vote_average | number : "1.0-1" }}</p>
+              </span>
+              <p class="title">
+                {{ recommended.title || recommended.original_name }}
+              </p>
+            </figcaption>
+          </figure>
+        </a>
+      </ngx-slick-carousel>
+    </div>
+  </section>
+
+  <ng-template #upcoming>
+    <section
+      class="rendered-movies recommendations"
+      *ngIf="isRecommendedLoaded"
+    >
+      <div class="inner-wrapper">
+        <h2>Recommended</h2>
+        <ngx-slick-carousel
+          class="carousel"
+          [config]="slideConfig"
+          #slickModal="slick-carousel"
+          style="width: 100%"
+          prevArrow="<button class='my-custom-prev-button'></button>"
+          nextArrow="<button class='my-custom-next-button'></button>"
+        >
+          <a
+            *ngFor="let trending of getLatestMovies$ | async"
+            [routerLink]="['/user/' + idFromUrl + '/selected-movie']"
+            [queryParams]="{
+              id: trending.id,
+              media_type: trending.media_type || 'movie'
+            }"
+            ngxSlickItem
+            class="each-movie"
+            m
+          >
+            <figure class="each-movie-figure">
+              <img
+                [src]="moviesPoster + trending?.poster_path"
+                [alt]="trending.title + ' Poster'"
+                class="movie-poster"
+                width="100%"
+                min-height="250px"
+              />
+              <figcaption>
+                <span class="rating">
+                  <svg
+                    id="svg2"
+                    xml:space="preserve"
+                    viewBox="0 0 45.05 41.35"
+                    version="1.1"
+                  >
+                    <g id="g10" transform="matrix(1.25 0 0 -1.25 0 41.35)">
+                      <g id="g12">
+                        <path
+                          id="path14"
+                          style="fill-rule: evenodd; fill: #ffe94b"
+                          d="m36.039 20.799-7.437-8.438 2-11.961-11.481 7.481-12.281-7.883 2.32 12.844-9.16 6.316 12.52 1.961 4.882 11.961 6.879-10.762 11.758-1.519z"
+                          inkscape:connector-curvature="0"
+                        />
+                      </g>
+                    </g>
+                  </svg>
+                  <p>{{ trending.vote_average | number : "1.0-1" }}</p>
+                </span>
+                <p class="title">
+                  {{ trending.title || trending.original_name }}
+                </p>
+              </figcaption>
+            </figure>
+          </a>
+        </ngx-slick-carousel>
+      </div>
+    </section>
+  </ng-template>
+</div>
+
+<ng-template #failureMessage>
+  <section class="failure-msg">
+    <h2 class="example-h2">Something went wrong...</h2>
+    <a [routerLink]="['/user/' + idFromUrl]"> Go Back </a>
+  </section>
+</ng-template>

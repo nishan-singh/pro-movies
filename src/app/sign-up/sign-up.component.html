@@ -1,0 +1,59 @@
+<section class="register-wrapper">
+  <h2 class="registeration-form__title">Register for an account</h2>
+  <form
+    action=""
+    class="registeration-form d-flex"
+    (ngSubmit)="onRegister(email.value, password.value)"
+    ngNativeValidate
+  >
+    <input
+      required
+      #username
+      type="text"
+      name="username"
+      id="username"
+      class="form-control registeration-form__input"
+      placeholder="Name"
+    />
+    <input
+      required
+      #email
+      type="email"
+      name="email"
+      id="email"
+      class="form-control registeration-form__input"
+      placeholder="Email"
+    />
+
+    <input
+      required
+      #password
+      type="password"
+      name="password"
+      id="password"
+      minlength="8"
+      class="form-control registeration-form__input"
+      placeholder="********"
+    />
+    <button type="submit" class="registeration-form__btn d-flex">
+      <p *ngIf="!loading">Register</p>
+      <mat-spinner
+        color="accent"
+        diameter="20"
+        class="loading"
+        *ngIf="loading"
+      ></mat-spinner>
+    </button>
+  </form>
+  <p class="success-msg" [ngClass]="{ show: successful }" *ngIf="successful">
+    Registered Successfully.
+  </p>
+  <p *ngIf="emailExists" class="error-msg">
+    This Email is already registered.
+    <button type="button" (click)="dialogRef.close()">Login</button>
+  </p>
+  <p class="log-in-info">
+    Already have an account?
+    <button type="button" (click)="dialogRef.close()">Login</button>
+  </p>
+</section>

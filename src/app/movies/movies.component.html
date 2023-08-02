@@ -1,0 +1,225 @@
+<app-nav-sidebar></app-nav-sidebar>
+<main>
+  <app-movies-slider></app-movies-slider>
+  <section class="rendered-movies upcoming" id="upcoming">
+    <div class="inner-wrapper">
+      <h2>Upcoming</h2>
+      <ngx-slick-carousel
+        class="carousel"
+        [config]="slideConfig"
+        #slickModal="slick-carousel"
+        style="width: 100%"
+      >
+        <a
+          *ngFor="let upcoming of upcoming$ | async"
+          [ngClass]="upcoming?.poster_path ? '' : 'd-none'"
+          [routerLink]="['/user/' + idFromUrl + '/selected-movie']"
+          [queryParams]="{
+            id: upcoming.id,
+            media_type: upcoming.media_type || 'movie'
+          }"
+          ngxSlickItem
+          class="each-movie"
+          [class.d-none]="upcoming?.backdrop_path"
+        >
+          <figure class="each-upcoming-figure" *ngIf="upcoming?.poster_path">
+            <img
+              [src]="moviesPoster + upcoming?.poster_path"
+              [alt]="upcoming.title + ' Poster'"
+              class="tv-shows-poster"
+            />
+            <figcaption>
+              <span class="rating">
+                <svg viewBox="0 0 45.05 41.35" version="1.1">
+                  <g id="g10" transform="matrix(1.25 0 0 -1.25 0 41.35)">
+                    <g id="g12">
+                      <path
+                        id="path14"
+                        style="fill-rule: evenodd; fill: #ffe94b"
+                        d="m36.039 20.799-7.437-8.438 2-11.961-11.481 7.481-12.281-7.883 2.32 12.844-9.16 6.316 12.52 1.961 4.882 11.961 6.879-10.762 11.758-1.519z"
+                      />
+                    </g>
+                  </g>
+                </svg>
+                <p>{{ upcoming.vote_average | number : "1.0-1" }}</p>
+              </span>
+
+              <p class="title">
+                {{ upcoming.title || upcoming.original_name }}
+              </p>
+            </figcaption>
+          </figure>
+        </a>
+      </ngx-slick-carousel>
+    </div>
+  </section>
+
+  <section class="rendered-movies" id="tv-shows">
+    <div class="inner-wrapper">
+      <h2>TV Shows</h2>
+      <ngx-slick-carousel
+        class="carousel"
+        [config]="slideConfig"
+        #slickModal="slick-carousel"
+        style="width: 100%"
+        prevArrow="<button class='my-custom-prev-button'></button>"
+        nextArrow="<button class='my-custom-next-button'></button>"
+      >
+        <a
+          *ngFor="let eachShow of TVShows$ | async"
+          [ngClass]="eachShow.poster_path ? '' : 'd-none'"
+          [routerLink]="['/user/' + idFromUrl + '/selected-movie']"
+          [queryParams]="{
+            id: eachShow.id,
+            media_type: eachShow.media_type || 'tv'
+          }"
+          ngxSlickItem
+          class="each-movie"
+          [class.d-none]="eachShow?.backdrop_path"
+        >
+          <figure class="each-tveachShow-figure" *ngIf="eachShow?.poster_path">
+            <img
+              [src]="moviesPoster + eachShow?.poster_path"
+              [alt]="eachShow.title + ' Poster'"
+              class="tv-shows-poster"
+              width="100"
+              height="250"
+            />
+            <figcaption>
+              <span class="rating">
+                <svg viewBox="0 0 45.05 41.35" version="1.1">
+                  <g id="g10" transform="matrix(1.25 0 0 -1.25 0 41.35)">
+                    <g id="g12">
+                      <path
+                        style="fill-rule: evenodd; fill: #ffe94b"
+                        d="m36.039 20.799-7.437-8.438 2-11.961-11.481 7.481-12.281-7.883 2.32 12.844-9.16 6.316 12.52 1.961 4.882 11.961 6.879-10.762 11.758-1.519z"
+                      />
+                    </g>
+                  </g>
+                </svg>
+                <p>{{ eachShow.vote_average | number : "1.0-1" }}</p>
+              </span>
+
+              <p class="title">
+                {{ eachShow.title || eachShow.name }}
+              </p>
+            </figcaption>
+          </figure>
+        </a>
+      </ngx-slick-carousel>
+    </div>
+  </section>
+
+  <section class="rendered-movies" id="now-playing">
+    <div class="inner-wrapper">
+      <h2>Now Playing</h2>
+      <ngx-slick-carousel
+        class="carousel"
+        [config]="slideConfig"
+        #slickModal="slick-carousel"
+        style="width: 100%"
+        prevArrow="<button class='my-custom-prev-button'></button>"
+        nextArrow="<button class='my-custom-next-button'></button>"
+      >
+        <a
+          *ngFor="let trending of trendingList$ | async"
+          [ngClass]="trending?.poster_path ? '' : 'd-none'"
+          [routerLink]="['/user/' + idFromUrl + '/selected-movie']"
+          [queryParams]="{
+            id: trending.id,
+            media_type: trending.media_type || 'movie'
+          }"
+          ngxSlickItem
+          class="each-movie"
+          m
+        >
+          <figure class="each-movie-figure" *ngIf="trending?.backdrop_path">
+            <img
+              [src]="moviesPoster + trending?.poster_path"
+              [alt]="trending.title + ' Poster'"
+              class="movie-poster"
+              width="100"
+              height="250"
+            />
+            <figcaption>
+              <span class="rating">
+                <svg id="svg2" viewBox="0 0 45.05 41.35" version="1.1">
+                  <g id="g10" transform="matrix(1.25 0 0 -1.25 0 41.35)">
+                    <g id="g12">
+                      <path
+                        id="path14"
+                        style="fill-rule: evenodd; fill: #ffe94b"
+                        d="m36.039 20.799-7.437-8.438 2-11.961-11.481 7.481-12.281-7.883 2.32 12.844-9.16 6.316 12.52 1.961 4.882 11.961 6.879-10.762 11.758-1.519z"
+                      />
+                    </g>
+                  </g>
+                </svg>
+                <p>{{ trending.vote_average | number : "1.0-1" }}</p>
+              </span>
+              <p class="title">
+                {{ trending.title || trending.original_name }}
+              </p>
+            </figcaption>
+          </figure>
+        </a>
+      </ngx-slick-carousel>
+    </div>
+  </section>
+
+  <section class="rendered-movies" id="top-rated">
+    <div class="inner-wrapper">
+      <h2>Top Rated</h2>
+      <ngx-slick-carousel
+        class="carousel"
+        [config]="slideConfig"
+        #slickModal="slick-carousel"
+        style="width: 100%"
+        prevArrow="<button class='my-custom-prev-button'></button>"
+        nextArrow="<button class='my-custom-next-button'></button>"
+      >
+        <a
+          *ngFor="let ratedMovie of ratedMovies$ | async"
+          [ngClass]="ratedMovie?.poster_path ? '' : 'd-none'"
+          [routerLink]="['/user/' + idFromUrl + '/selected-movie']"
+          [queryParams]="{
+            id: ratedMovie.id,
+            media_type: ratedMovie.media_type || 'movie'
+          }"
+          ngxSlickItem
+          class="each-movie"
+          m
+        >
+          <figure class="each-movie-figure" *ngIf="ratedMovie?.backdrop_path">
+            <img
+              [src]="moviesPoster + ratedMovie?.poster_path"
+              [alt]="ratedMovie.title + ' Poster'"
+              class="movie-poster"
+              width="100"
+              height="250"
+            />
+            <figcaption>
+              <span class="rating">
+                <svg id="svg2" viewBox="0 0 45.05 41.35" version="1.1">
+                  <g id="g10" transform="matrix(1.25 0 0 -1.25 0 41.35)">
+                    <g id="g12">
+                      <path
+                        id="path14"
+                        style="fill-rule: evenodd; fill: #ffe94b"
+                        d="m36.039 20.799-7.437-8.438 2-11.961-11.481 7.481-12.281-7.883 2.32 12.844-9.16 6.316 12.52 1.961 4.882 11.961 6.879-10.762 11.758-1.519z"
+                      />
+                    </g>
+                  </g>
+                </svg>
+                <p>{{ ratedMovie.vote_average | number : "1.0-1" }}</p>
+              </span>
+              <p class="title">
+                {{ ratedMovie.title || ratedMovie.original_name }}
+              </p>
+            </figcaption>
+          </figure>
+        </a>
+      </ngx-slick-carousel>
+    </div>
+  </section>
+</main>
+<app-footer></app-footer>

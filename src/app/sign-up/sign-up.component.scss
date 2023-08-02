@@ -1,0 +1,90 @@
+@import "../../variables.scss";
+
+.register-wrapper {
+  padding: 24px;
+  background-color: rgba($color: #fff, $alpha: 0.7);
+}
+
+h2 {
+  color: $primary-color;
+}
+
+h2 {
+  font-size: clamp(1.25rem, 5vw, 2.25rem);
+  text-align: center;
+}
+
+form {
+  flex-direction: column;
+  color: $primary-color;
+  padding: 24px 16px;
+  gap: 32px;
+  font-size: 16px;
+  width: 100%;
+}
+
+input {
+  width: 100%;
+  padding: 16px 12px;
+  border-radius: 5px;
+  border: 1px solid $primary-color;
+}
+
+.registeration-form__btn {
+  background-color: $text-accent-color;
+  padding: 16px 12px;
+  width: 100%;
+  border-radius: 5px;
+  color: $text-primary-color;
+}
+
+.log-in-info {
+  color: $primary-color;
+  button {
+    font-weight: 500;
+    color: $secondary-color;
+    text-decoration: underline;
+    &:hover,
+    &:focus {
+      color: $primary-color;
+    }
+  }
+}
+
+.log-in-link {
+  text-decoration: underline;
+  color: $secondary-color;
+  &:hover,
+  &:focus {
+    color: $primary-color;
+  }
+}
+
+.error-msg {
+  color: #d71313;
+  font-weight: 500;
+  backdrop-filter: blur(5px);
+  margin-block-end: 16px;
+  button {
+    font-weight: 500;
+    text-decoration: underline;
+    &:hover,
+    &:focus {
+      color: $primary-color;
+    }
+  }
+}
+
+.success-msg {
+  position: fixed;
+  top: 32px;
+  right: -100%;
+  border-radius: 12px;
+  background-color: $text-accent-color;
+  padding: 12px 8px;
+  transition: right 0.3s ease-in-out;
+}
+
+.show {
+  right: 32px;
+}

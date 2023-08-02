@@ -1,0 +1,73 @@
+<main class="log-in-wrapper d-flex">
+  <section class="loading d-flex" *ngIf="loadingPage; else content">
+    <mat-spinner diameter="75" class="loading"></mat-spinner>
+    <p>Loading...</p>
+  </section>
+  <ng-template #content>
+    <header class="header" role="banner">
+      <h1 style="font-family: 'Inter', sans-serif; font-weight: bolder">
+        Pro-Movies
+      </h1>
+    </header>
+    <article class="form-wrapper">
+      <h2 class="log-in-form__title">
+        <span class="font-weight-bold">Log In</span> to your account
+      </h2>
+
+      <form
+        (submit)="onLogin(userEmail.value, userPassword.value)"
+        role="form"
+        class="log-in-form"
+        #loginForm="ngForm"
+        ngNativeValidate
+      >
+        <input
+          required
+          #userEmail
+          type="email"
+          name="userEmail"
+          id="userEmail"
+          class="form-control log-in-form__input"
+          placeholder="Email"
+        />
+        <input
+          required
+          #userPassword
+          type="password"
+          name="password"
+          id="password"
+          class="form-control log-in-form__input"
+          placeholder="********"
+        />
+        <button type="submit" class="log-in-form__btn d-flex">
+          <p *ngIf="!loading">Log In</p>
+          <mat-spinner
+            color="accent"
+            diameter="20"
+            class="loading"
+            *ngIf="loading"
+          ></mat-spinner>
+        </button>
+      </form>
+      <p class="log-in-form__error" *ngIf="errorMessage">
+        Email or password is incorrect. Please try again.
+      </p>
+      <div class="log-in-form__links-wrapper d-flex">
+        <button class="forgot-password-link" (click)="onResetPassword()">
+          Forgot Password?
+        </button>
+        <a routerLink="user/guest" class="log-in-form__link">Guest Login</a>
+      </div>
+      <div class="d-flex new-account-link">
+        <p>Don't have an account?</p>
+        <button
+          type="button"
+          class="register__link"
+          (click)="openRegisterDialog()"
+        >
+          Register
+        </button>
+      </div>
+    </article>
+  </ng-template>
+</main>

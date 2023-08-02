@@ -1,0 +1,114 @@
+@import "../../variables";
+
+.search-result-wrapper {
+  display: flex;
+  margin-block: 32px;
+  margin-inline: 32px;
+  flex-direction: column;
+  h2 {
+    margin-block-end: 32px;
+  }
+  .title {
+    margin-block: 24px;
+    position: relative;
+    padding-inline-start: $design-padding;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 2px;
+      width: 4px;
+      height: 85%;
+      border-radius: 100vh;
+      background-color: $text-accent-color;
+    }
+  }
+  .each-search-result-wrapper {
+    background-color: $secondary-color;
+    border-radius: 8px;
+    margin-block-end: 24px;
+    figure {
+      display: flex;
+      img {
+        border-radius: 8px 0 0 8px;
+        width: 150px;
+      }
+      figcaption {
+        margin: 24px 32px;
+        gap: 12px;
+        .trailer-link {
+          background-color: $primary-color;
+          padding: 6px 10px 6px 4px;
+          border-radius: 4px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 4px;
+          width: fit-content;
+          .mat-icon {
+            vertical-align: bottom;
+          }
+          &:hover {
+            color: hsl(0, 0%, 75%);
+          }
+        }
+        h2 {
+          font-size: 1.5em;
+          font-weight: 500;
+        }
+        p {
+          margin-block: 12px;
+          strong {
+            font-weight: 500;
+          }
+        }
+        .release-date {
+          color: $text-accent-color;
+        }
+      }
+    }
+  }
+  .overview {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+  }
+}
+
+.no-poster {
+  display: none;
+}
+
+@media (max-width: 572px) {
+  .search-result-wrapper {
+    margin-inline: 16px;
+    .each-search-result-wrapper {
+      figure {
+        max-height: 180px;
+        img {
+          border-radius: 8px 0 0 8px;
+          max-height: 100%;
+          object-fit: contain;
+          object-position: left;
+        }
+        figcaption {
+          margin: 12px 12px 12px 0;
+          p,
+          h2 {
+            margin-block: 8px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+          }
+          h2 {
+            font-size: 1.25em;
+            -webkit-line-clamp: 1;
+          }
+        }
+      }
+    }
+  }
+}

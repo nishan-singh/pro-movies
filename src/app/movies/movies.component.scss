@@ -1,0 +1,23 @@
+@import "../../variables.scss";
+
+app-movies-slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+app-movies {
+  background-color: white;
+}
+
+.upcoming {
+  margin-block-start: 32px;
+}
+
+@media (max-width: 872px) {
+  .rendered-movies {
+    .inner-wrapper {
+      width: 90%;
+    }
+  }
+}

@@ -1,0 +1,95 @@
+@import "../../variables";
+
+svg {
+  width: 18px;
+}
+
+.video-desc-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-block-start: 24px;
+  .inner-container {
+    background-color: $secondary-color;
+    width: 85%;
+    border-radius: 6px;
+    .loading-container {
+      position: absolute;
+      background: transparent;
+      box-shadow: none;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .video-infos {
+      padding-inline: 18px;
+      margin-block-start: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      padding-inline: 18px;
+      margin-block: 18px;
+      span {
+        display: flex;
+        gap: 8px;
+        p {
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+.video-container {
+  height: 55vh;
+  height: 55dvh;
+  position: relative;
+}
+
+:host ::ng-deep youtube-player iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.recommendations {
+  margin-block-start: 32px;
+  .inner-wrapper {
+    width: 85%;
+  }
+}
+
+.not-found {
+  font-size: 1.25rem;
+}
+
+.failure-msg {
+  font-size: 1.25rem;
+  margin-block-start: 120px;
+  margin-inline: 5%;
+  a {
+    color: $muted-color;
+    text-decoration: underline;
+    &:hover {
+      color: $text-primary-color;
+      text-decoration: underline;
+    }
+  }
+}
+
+@media (max-width: 650px) {
+  .video-container {
+    height: 35vh;
+    height: 35dvh;
+  }
+  .video-desc-wrapper {
+    .inner-container {
+      width: 95%;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+.imprint {
+  margin-inline: 7.5%;
+  margin-block: 48px;
+  width: 80%;
+  h1 {
+    font-size: 3rem;
+    margin-block-end: 32px;
+  }
+  h2 {
+    margin-block: 24px;
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 572px) {
+  .imprint {
+    margin-inline: 0;
+    padding-inline: 32px;
+  }
+}
