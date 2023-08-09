@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FetchDataService } from '../services/fetch-data.service';
+import { FetchDataService } from '../../services/fetch-data.service';
 import { map } from 'rxjs';
 
 @Component({

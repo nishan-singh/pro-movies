@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { FetchDataService } from '../services/fetch-data.service';
+import { FetchDataService } from '../../services/fetch-data.service';
 import { Firestore, collectionData, collection } from '@angular/fire/firestore';
 
 import { map } from 'rxjs';
-import { DatabaseService } from 'app/services/database.service';
+import { DatabaseService } from 'services/database.service';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 
 @Component({

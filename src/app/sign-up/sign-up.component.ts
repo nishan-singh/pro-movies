@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { DatabaseService } from 'app/services/database.service';
+import { DatabaseService } from 'services/database.service';
 
 @Component({
   selector: 'app-sign-up',

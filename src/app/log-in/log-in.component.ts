@@ -2,7 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ForgotPasswordComponent } from 'app/forgot-password/forgot-password.component';
-import { DatabaseService } from 'app/services/database.service';
+import { DatabaseService } from 'services/database.service';
 import { SignUpComponent } from 'app/sign-up/sign-up.component';
 
 @Component({

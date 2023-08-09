@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { DatabaseService } from 'app/services/database.service';
+import { DatabaseService } from 'services/database.service';
 
 @Component({
   selector: 'app-forgot-password',

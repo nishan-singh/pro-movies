@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { FetchDataService } from '../services/fetch-data.service';
+import { FetchDataService } from '../../services/fetch-data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SlickCarouselComponent } from 'ngx-slick-carousel';
 import { map } from 'rxjs';

@@ -1,6 +1,6 @@
 import { Component, Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FetchDataService } from '../services/fetch-data.service';
+import { FetchDataService } from '../../services/fetch-data.service';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { combineLatest, map } from 'rxjs';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
