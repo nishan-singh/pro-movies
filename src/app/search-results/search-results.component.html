@@ -5,7 +5,7 @@
   <article
     class="each-search-result-wrapper"
     *ngFor="let result of getSearchResults$ | async"
-    [ngStyle]="{ display: !result?.poster_path ? 'none' : 'block' }"
+    [ngStyle]="{ display: result?.poster_path ? 'none' : 'block' }"
     [ngClass]="result?.poster_path ? '' : 'no-poster'"
   >
     <figure *ngIf="result?.poster_path">
@@ -69,6 +69,7 @@
       class="each-search-result-wrapper"
       *ngFor="let upcoming of getLatestMovies$ | async"
       [ngStyle]="{ display: !upcoming?.poster_path ? 'none' : 'block' }"
+      [ngClass]="upcoming?.poster_path ? '' : 'no-poster'"
     >
       <figure *ngIf="upcoming?.poster_path">
         <img

@@ -70,8 +70,9 @@
           ngxSlickItem
           class="each-movie"
           [ngClass]="recommended?.poster_path ? '' : 'd-none'"
+          [ngStyle]="{ display: !recommended?.poster_path ? 'none' : 'block' }"
         >
-          <figure class="each-movie-figure">
+          <figure class="each-movie-figure" *ngIf="recommended?.poster_path">
             <img
               *ngIf="recommended?.poster_path"
               [src]="moviesPoster + recommended?.poster_path"
@@ -79,6 +80,7 @@
               class="movie-poster"
               width="100%"
               min-height="250px"
+              loading="lazy"
             />
             <figcaption>
               <span class="rating">
@@ -135,15 +137,17 @@
             }"
             ngxSlickItem
             class="each-movie"
-            m
+            [ngStyle]="{ display: trending?.poster_path ? 'none' : 'block' }"
+            [ngClass]="trending?.poster_path ? '' : 'no-poster'"
           >
-            <figure class="each-movie-figure">
+            <figure class="each-movie-figure" *ngIf="trending?.poster_path">
               <img
                 [src]="moviesPoster + trending?.poster_path"
                 [alt]="trending.title + ' Poster'"
                 class="movie-poster"
                 width="100%"
                 min-height="250px"
+                loading="lazy"
               />
               <figcaption>
                 <span class="rating">

@@ -78,7 +78,7 @@
 }
 
 .no-poster {
-  display: none;
+  display: none !important;
 }
 
 @media (max-width: 572px) {

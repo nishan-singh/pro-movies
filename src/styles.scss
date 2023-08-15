@@ -107,10 +107,6 @@ app-footer {
   }
 }
 
-.d-none {
-  display: none;
-}
-
 .each-movie {
   display: flex;
   position: relative;
@@ -164,6 +160,10 @@ app-footer {
       }
     }
   }
+}
+
+.d-none {
+  display: none;
 }
 
 .slick-track {
