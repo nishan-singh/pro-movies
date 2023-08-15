@@ -35,7 +35,6 @@ export class MoviesSliderComponent {
 
   constructor(
     private _apiService: FetchDataService,
-    private route: Router,
     private activateRoute: ActivatedRoute
   ) {
     this.isLoaded = true;
