@@ -52,7 +52,7 @@
         *ngIf="showSearch"
         class="close-button"
         (click)="closeSearchBar()"
-        aria-label="Search Button"
+        aria-label="Close Button"
       >
         <svg
           width="32"
@@ -79,6 +79,7 @@
       *ngIf="!showSearch"
       (click)="searchMovie()"
       class="d-flex"
+      aria-label="Search Button"
     >
       <svg
         width="24"
