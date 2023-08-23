@@ -1,5 +1,10 @@
 <section class="slider" role="presentation">
-  <button type="button" class="prev-btn" (click)="prevMovie()">
+  <button
+    type="button"
+    class="prev-btn"
+    (click)="prevMovie()"
+    aria-label="Previous Movie"
+  >
     <svg
       fill="#ffffff"
       height="800px"
@@ -48,7 +53,12 @@
       </figure>
     </a>
   </ngx-slick-carousel>
-  <button type="button" class="next-btn" (click)="nextMovie()">
+  <button
+    type="button"
+    class="next-btn"
+    (click)="nextMovie()"
+    aria-label="Next Movie"
+  >
     <svg
       fill="#ffffff"
       height="800px"

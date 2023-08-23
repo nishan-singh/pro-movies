@@ -1,7 +1,11 @@
 <!-- navbar -->
 <nav class="navbar d-flex" [class.z-index-0]="hideNavbar">
   <div class="logo-sidebar-toggle-wrapper d-flex">
-    <button type="button" (click)="hideNav(); sidenav.toggle()">
+    <button
+      type="button"
+      (click)="hideNav(); sidenav.toggle()"
+      aria-label="Toggle navigation"
+    >
       <svg
         width="24"
         height="24"
@@ -48,6 +52,7 @@
         *ngIf="showSearch"
         class="close-button"
         (click)="closeSearchBar()"
+        aria-label="Search Button"
       >
         <svg
           width="32"
@@ -89,7 +94,12 @@
     </button>
   </div>
   <div class="log-out-wrapper">
-    <button type="button" class="d-flex" (click)="toggleLogoutButton()">
+    <button
+      type="button"
+      class="d-flex"
+      (click)="toggleLogoutButton()"
+      aria-label="Toggle Log Out Button"
+    >
       <svg
         width="48"
         height="48"

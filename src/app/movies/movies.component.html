@@ -62,8 +62,8 @@
         [config]="slideConfig"
         #slickModal="slick-carousel"
         style="width: 100%"
-        prevArrow="<button class='my-custom-prev-button'></button>"
-        nextArrow="<button class='my-custom-next-button'></button>"
+        prevArrow="<button class='my-custom-prev-button' aria-label='previous Movie'></button>"
+        nextArrow="<button class='my-custom-next-button' aria-label='next Movie'></button>"
       >
         <a
           *ngFor="let eachShow of TVShows$ | async"

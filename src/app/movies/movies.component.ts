@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { FetchDataService } from '../../services/fetch-data.service';
-import { Firestore, collectionData, collection } from '@angular/fire/firestore';
 
 import { map } from 'rxjs';
 import { DatabaseService } from 'services/database.service';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-movies',
@@ -81,8 +80,6 @@ export class MoviesComponent {
       }
     });
   }
-
-  ngOnInit() {}
 
   isUserAuthorized(): boolean {
     return this.userUid === this.idFromUrl;
