@@ -137,7 +137,6 @@
             }"
             ngxSlickItem
             class="each-movie"
-            [ngStyle]="{ display: trending?.poster_path ? 'none' : 'block' }"
             [ngClass]="trending?.poster_path ? '' : 'no-poster'"
           >
             <figure class="each-movie-figure" *ngIf="trending?.poster_path">
